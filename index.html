@@ -329,15 +329,15 @@
                         <div class="md:col-span-8 p-8">
                             <div class="grid sm:grid-cols-2 gap-8 mb-4">
                                 <div>
-                                    <h4 class="font-bold text-slate-900 text-sm mb-2">Challenge</h4>
+                                    <h4 class="font-bold text-slate-900 text-sm mb-2">Role & Challenge</h4>
                                     <p class="text-xs text-slate-600 leading-relaxed">
-                                        200여 개의 통계 화면을 개별 테이블로 관리하여 개발 및 유지보수 공수가 과다하게 발생.
+                                        OLAP Admin으로서 '정책지원시스템'의 200여 개 통계 화면 개발 및 관리를 담당. 화면별 개별 테이블 생성 방식으로 인한 개발 공수 과다 발생이 문제.
                                     </p>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-slate-900 text-sm mb-2">Solution (One-Table Strategy)</h4>
                                     <p class="text-xs text-slate-600 leading-relaxed">
-                                        '화면 ID'를 키로 하는 통합 테이블 구조 설계. 메타데이터 기반 관리로 아키텍처 단순화.
+                                        통계청 API 수집 프로그램을 자체 개발하고, '화면 ID'를 키로 하는 통합 테이블 구조를 설계하여 데이터 관리를 일원화. 메타데이터 기반으로 유지보수 효율 극대화.
                                     </p>
                                 </div>
                             </div>
@@ -378,6 +378,7 @@
                     <div class="code-tab" onclick="switchTab('etl')"><i class="fas fa-database mr-2 text-xs"></i>ETL</div>
                     <div class="code-tab" onclick="switchTab('serverless')"><i class="fas fa-cloud mr-2 text-xs"></i>Serverless</div>
                     <div class="code-tab" onclick="switchTab('logging')"><i class="fas fa-file-alt mr-2 text-xs"></i>Logging (Redshift)</div>
+                    <div class="code-tab" onclick="switchTab('openapi')"><i class="fas fa-globe mr-2 text-xs"></i>Open API Automation</div>
                 </div>
 
                 <!-- Content Area -->
@@ -612,6 +613,56 @@ class RedshiftLogUtility:
         except Exception as e:
             logging.error(f"Redshift Bulk Log Insertion Failed. Error: {e}")
             self.detail_buffer.clear()
+                        </code></pre>
+                    </div>
+
+                    <!-- Tab 6: Open API Automation -->
+                    <div id="content-openapi" class="hidden">
+                        <pre><code class="language-python">
+# openapi_generator.py (주요 로직 요약)
+import pandas as pd
+import requests
+from datetime import datetime
+
+def get_df(json_url):
+    """
+    통계청 API 호출 및 JSON 파싱을 통한 DataFrame 변환
+    User-Agent 무작위 설정을 통해 대량 호출 시 차단 방지 로직 적용
+    """
+    user_agent = UserAgent()
+    headers = {'User-Agent': user_agent.random}
+    response = requests.get(json_url, headers=headers)
+    
+    if response.status_code == 200:
+        json = response.json()
+        return pd.json_normalize(json)
+    else:
+        return False
+
+if __name__ == "__main__":
+    # 1. 엑셀 파일(JSON_TO_CSV_LIST.xlsx)에서 수집 대상 지표 목록 로드
+    df = pd.read_excel('JSON_TO_CSV_LIST.xlsx', sheet_name='화면목록')
+    df = df[df['파일생성'] == 'O']  # '파일생성' 체크된 항목만 필터링
+
+    for file_name, tbl_id, tbl_cycle, tbl_sub_obj in zip(df['화면명'], df['tblId'], df['주기'], df['비고']):
+        try:
+            # 2. 미래 지표 여부 확인 및 수집 종료일(now_date) 동적 설정
+            # 2008년부터 현재까지의 데이터를 순차적으로 수집
+            
+            # 3. Base URL 생성 (통계청/ECOS 등 분기 처리)
+            base_url = f'https://kosis.kr/openapi/Param/statisticsParameterData.do?method=getList...'
+            
+            # 4. 4만 셀 이상 대용량 데이터 처리 (Pagination Logic)
+            if '대용량' in tbl_sub_obj:
+               # objL 레벨별로 반복 호출하여 병합 (recursive logic)
+               pass
+            
+            # 5. 수집 결과 CSV 저장 (Encoding: utf-8-sig)
+            result.to_csv(f'output/{file_name}.csv', encoding='utf-8-sig', index=False)
+            print(f"Success: {file_name}")
+            
+        except Exception as e:
+            print(f"Error: {file_name} - {e}")
                         </code></pre>
                     </div>
                 </div>
