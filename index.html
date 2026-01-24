@@ -18,10 +18,62 @@
         .section-intro { max-width: 700px; margin: 0 auto 3rem; text-align: center; color: #64748b; line-height: 1.6; font-size: 0.95rem; }
         .hover-scale { transition: transform 0.2s ease-out; }
         .hover-scale:hover { transform: translateY(-3px); }
-        .img-container { background: #f8fafc; border-radius: 0.75rem; overflow: hidden; border: 1px solid #e2e8f0; transition: all 0.3s ease; }
-        .img-container:hover { border-color: #cbd5e1; }
+        .img-container { background: #f8fafc; border-radius: 0.75rem; overflow: hidden; border: 1px solid #e2e8f0; transition: all 0.3s ease; position: relative; cursor: zoom-in; }
+        .img-container:hover { border-color: #cbd5e1; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
+        .img-container:hover::after {
+            content: '\f00e'; /* FontAwesome search-plus icon */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: rgba(37, 99, 235, 0.8);
+            font-size: 2rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            pointer-events: none;
+        }
+        .img-container:hover img { opacity: 0.9; filter: blur(1px); transition: all 0.3s ease; }
+        .img-container:hover::after { opacity: 1; }
+
         .img-label { font-size: 0.7rem; font-weight: 600; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.5rem; display: block; }
         
+        /* Lightbox Styles */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .lightbox.active { display: flex; opacity: 1; }
+        .lightbox-content {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 4px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            transform: scale(0.9);
+            transition: transform 0.3s ease;
+        }
+        .lightbox.active .lightbox-content { transform: scale(1); }
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 40px;
+            cursor: pointer;
+            z-index: 10000;
+        }
+
         /* Code Tab Styles - Simplified */
         .code-window { background: var(--code-bg); border-radius: 0.5rem; overflow: hidden; border: 1px solid #334155; }
         .code-header { background: #262626; padding: 0.5rem 1rem; display: flex; gap: 0.5rem; align-items: center; border-bottom: 1px solid #3f3f3f; }
@@ -42,6 +94,12 @@
     </style>
 </head>
 <body class="selection:bg-slate-200 selection:text-slate-900">
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" class="lightbox-content" src="" alt="Expanded View">
+    </div>
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-morphism">
@@ -196,17 +254,17 @@
                                     </p>
                                 </div>
                             </div>
-                            <!-- Images -->
+                            <!-- Images (Zoomable) -->
                             <div class="grid sm:grid-cols-2 gap-4">
                                 <div>
-                                    <span class="img-label">Architecture</span>
-                                    <div class="img-container aspect-video relative">
+                                    <span class="img-label">Architecture (Click to Expand)</span>
+                                    <div class="img-container aspect-video" onclick="openLightbox('gsretail_airflow_architecture_overview.png')">
                                         <img src="gsretail_airflow_architecture_overview.png" alt="Architecture" class="w-full h-full object-contain p-2" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-xs text-slate-400\'>Architecture Image</div>'">
                                     </div>
                                 </div>
                                 <div>
-                                    <span class="img-label">Batch Flow</span>
-                                    <div class="img-container aspect-video relative">
+                                    <span class="img-label">Batch Flow (Click to Expand)</span>
+                                    <div class="img-container aspect-video" onclick="openLightbox('gsretail_batch.png')">
                                         <img src="gsretail_batch.png" alt="Flow" class="w-full h-full object-contain p-2" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-xs text-slate-400\'>Batch Flow Image</div>'">
                                     </div>
                                 </div>
@@ -253,7 +311,7 @@
                     </div>
                 </div>
 
-                <!-- Project 3 (Local Finance) - NEW -->
+                <!-- Project 3 (Local Finance) -->
                 <div class="bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-md transition-shadow">
                     <div class="grid md:grid-cols-12 gap-0">
                         <div class="md:col-span-4 bg-white border-r border-slate-100 p-8 flex flex-col justify-between">
@@ -319,6 +377,7 @@
                     <div class="code-tab" onclick="switchTab('trigger')"><i class="fas fa-bolt mr-2 text-xs"></i>Trigger</div>
                     <div class="code-tab" onclick="switchTab('etl')"><i class="fas fa-database mr-2 text-xs"></i>ETL</div>
                     <div class="code-tab" onclick="switchTab('serverless')"><i class="fas fa-cloud mr-2 text-xs"></i>Serverless</div>
+                    <div class="code-tab" onclick="switchTab('logging')"><i class="fas fa-file-alt mr-2 text-xs"></i>Logging (Redshift)</div>
                 </div>
 
                 <!-- Content Area -->
@@ -454,6 +513,107 @@ def attach_svltask_to_dbt_tasks(dag, dbt_tg, svl_models):
                 pre_tasks >> target_task
                         </code></pre>
                     </div>
+
+                    <!-- Tab 5: Logging (Redshift) -->
+                    <div id="content-logging" class="hidden">
+                        <pre><code class="language-python">
+import logging
+from datetime import datetime
+from typing import Any, Dict, Optional, Tuple, List
+from airflow.providers.amazon.aws.hooks.redshift_sql import RedshiftSQLHook
+
+class RedshiftLogUtility:
+    """
+    Redshift에 ETL 로그를 기록하는 유틸리티 클래스입니다.
+    Job 상태 로그(Start/End)는 독립적인 커밋으로 영속성을 확보하며,
+    쿼리 상세 로그(Detail)는 성능을 위해 버퍼링 후 Bulk Insert 및 단일 커밋으로 처리합니다.
+    """
+   
+    DETAIL_LOG_COLUMNS = [
+        "DAG_ID", "RUN_ID", "TASK_ID", "TRY_NUMBER", "RUN_SQL_NUM",
+        "JOB_ID", "RUN_SQL_TOTAL_NUM", "RUN_SQL", "STATUS", 
+        "AFFECTED_ROWS", "ERROR_MSG", "SQL_START", "SQL_END", "SQL_EXEC_TIME"
+    ]
+
+    def __init__(self, redshift_conn_id: str):
+        # 1. Hook 인스턴스 초기화 (커넥션 재사용)
+        self.hook = RedshiftSQLHook(redshift_conn_id=redshift_conn_id)
+        # 2. 상세 로그(Detail Log)를 위한 버퍼 초기화
+        self.detail_buffer: List[Tuple] = []
+        logging.info("RedshiftLogUtility Initialized. Detail logs will be buffered.")
+
+    def _execute_single_sql(self, sql: str, params: Tuple[Any, ...]):
+        """단일 쿼리를 실행하고 독립적으로 커밋합니다. (주로 Job Start/End 상태 기록용)"""
+        try:
+            self.hook.run(sql, parameters=params)
+            logging.debug(f"Redshift Log SQL Executed: {sql[:100]}...")
+        except Exception as e:
+            logging.error(f"Redshift Log Insertion Failed. Error: {e}")
+            pass
+
+    def insert_job_start_log(self, dag_id, run_id, task_id, try_number, to_kst_timestamp):
+        """NBS_ETL_JOB_LOG 테이블에 Job 시작 로그를 기록합니다. (INSERT)"""
+        insert_sql = """
+            INSERT INTO admin.nbs_log (
+                DAG_ID, RUN_ID, TASK_ID, TRY_NUMBER, JOB_ID,
+                EXEC_TYPE, DATA_INTERVAL_START, DATA_INTERVAL_END, INTERVAL_TYPE,
+                STATUS, JOB_START
+            ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, 'RUNNING', GETDATE())
+        """
+        params = (
+            dag_id, run_id, task_id, try_number,
+            to_kst_timestamp.get('job_id'),
+            to_kst_timestamp.get('exec_type', 'manual'),
+            to_kst_timestamp.get('data_interval_start'),
+            to_kst_timestamp.get('data_interval_end'),
+            to_kst_timestamp.get('interval_type')
+        )
+        self._execute_single_sql(insert_sql, params)
+
+    def update_job_end_log(self, dag_id, run_id, task_id, try_number, status, error_msg=None):
+        """NBS_ETL_JOB_LOG 테이블의 Job 최종 상태를 업데이트합니다. (UPDATE)"""
+        if error_msg and len(error_msg) > 4000: error_msg = error_msg[:4000]
+        update_sql = """
+            UPDATE admin.nbs_log
+            SET STATUS = %s, JOB_END = GETDATE(),
+                JOB_EXEC_TIME = EXTRACT(EPOCH FROM (GETDATE() - JOB_START)),
+                ERROR_MSG = %s
+            WHERE DAG_ID = %s AND RUN_ID = %s AND TASK_ID = %s AND TRY_NUMBER = %s
+        """
+        params = (status, error_msg, dag_id, run_id, task_id, try_number)
+        self._execute_single_sql(update_sql, params)
+
+    def insert_query_log(self, **kwargs):
+        """쿼리 실행 상세 로그를 버퍼에 저장합니다."""
+        # ... (Parameter processing omitted for brevity)
+        params_tuple = (
+            kwargs['dag_id'], kwargs['run_id'], kwargs['task_id'], kwargs['try_number'],
+            kwargs['run_sql_num'], kwargs['job_id'], kwargs['run_sql_total_num'],
+            kwargs['sql_content'], kwargs['status'], kwargs['affected_rows'],
+            kwargs.get('error_msg'), kwargs['sql_start_time'], kwargs['sql_end_time'],
+            kwargs.get('exec_time')
+        )
+        self.detail_buffer.append(params_tuple)
+
+    def flush_detail_logs(self):
+        """버퍼에 쌓인 모든 상세 로그를 Bulk Insert하고 단일 트랜잭션으로 커밋합니다."""
+        if not self.detail_buffer: return
+
+        logging.info(f"Flushing {len(self.detail_buffer)} detail log records...")
+        try:
+            # 🚨 hook.insert_rows()를 사용하여 Bulk Insert를 실행합니다.
+            self.hook.insert_rows(
+                table='admin.nbs_log_detail',
+                rows=self.detail_buffer,
+                target_fields=self.DETAIL_LOG_COLUMNS,
+                commit_every=0  # Bulk Commit
+            )
+            self.detail_buffer.clear()
+        except Exception as e:
+            logging.error(f"Redshift Bulk Log Insertion Failed. Error: {e}")
+            self.detail_buffer.clear()
+                        </code></pre>
+                    </div>
                 </div>
             </div>
         </div>
@@ -540,6 +700,21 @@ def attach_svltask_to_dbt_tasks(dag, dbt_tg, svl_models):
             
             const activeTab = document.querySelector(`.code-tab[onclick="switchTab('${tabId}')"]`);
             if(activeTab) activeTab.classList.add('active');
+        }
+
+        // Lightbox Functions
+        function openLightbox(src) {
+            const lightbox = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = ''; // Restore scrolling
         }
 
         // 3. Charts - Simplified Design
