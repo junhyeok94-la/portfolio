@@ -115,11 +115,11 @@
         .code-content::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
 
         /* Process Flow Styles */
-        .process-step { position: relative; padding-left: 1.5rem; border-left: 2px solid #e2e8f0; padding-bottom: 1.5rem; }
+        .process-step { position: relative; padding-left: 2rem; border-left: 2px solid #e2e8f0; padding-bottom: 2rem; }
         .process-step:last-child { border-left: none; padding-bottom: 0; }
-        .process-step::before { content: ''; position: absolute; left: -0.4rem; top: 0.2rem; width: 0.8rem; height: 0.8rem; background: #fff; border: 2px solid #2563eb; border-radius: 50%; }
-        .process-step h5 { font-size: 0.95rem; font-weight: 700; color: #1e293b; margin-bottom: 0.25rem; }
-        .process-step p { font-size: 0.85rem; color: #64748b; }
+        .process-step::before { content: ''; position: absolute; left: -0.55rem; top: 0.25rem; width: 1.1rem; height: 1.1rem; background: #fff; border: 3px solid #2563eb; border-radius: 50%; }
+        .process-step h5 { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.25rem; }
+        .process-step p { font-size: 0.9rem; color: #64748b; }
     </style>
 </head>
 <body class="selection:bg-slate-200 selection:text-slate-900">
@@ -132,68 +132,68 @@
 
     <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 glass-morphism">
-        <div class="max-w-7xl mx-auto px-8 h-16 flex justify-between items-center">
-            <div class="font-bold text-xl tracking-tight text-slate-800 cursor-pointer" onclick="window.scrollTo(0,0)">
+        <div class="max-w-7xl mx-auto px-8 h-20 flex justify-between items-center">
+            <div class="font-bold text-2xl tracking-tight text-slate-800 cursor-pointer" onclick="window.scrollTo(0,0)">
                 Na Junhyeok
             </div>
-            <div class="hidden md:flex gap-10 text-base font-medium text-slate-600">
+            <div class="hidden md:flex gap-10 text-lg font-medium text-slate-600">
                 <a href="#hero" class="hover:text-blue-600 transition-colors">Intro</a>
                 <a href="#impact" class="hover:text-blue-600 transition-colors">Impact</a>
                 <a href="#projects" class="hover:text-blue-600 transition-colors">Projects</a>
                 <a href="#engineering" class="hover:text-blue-600 transition-colors">Code</a>
                 <a href="#troubleshooting" class="hover:text-blue-600 transition-colors">Review</a>
             </div>
-            <a href="mailto:skwnsgur5919@naver.com" class="text-sm font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 px-5 py-2.5 rounded-lg transition-colors">
+            <a href="mailto:skwnsgur5919@naver.com" class="text-base font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 px-6 py-3 rounded-lg transition-colors">
                 Contact
             </a>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="hero" class="pt-40 pb-24 px-8 min-h-[85vh] flex items-center">
-        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center">
-            <div class="space-y-8">
-                <div class="inline-block px-4 py-1.5 rounded bg-slate-100 text-slate-600 text-sm font-bold tracking-wide">
+    <section id="hero" class="pt-48 pb-32 px-8 min-h-[90vh] flex items-center">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div class="space-y-10">
+                <div class="inline-block px-5 py-2 rounded bg-slate-100 text-slate-600 text-sm font-bold tracking-wide">
                     5 Years Data Engineer
                 </div>
-                <h1 class="text-5xl md:text-6xl font-bold tracking-tight text-slate-900 leading-[1.15]">
+                <h1 class="text-6xl md:text-7xl font-bold tracking-tight text-slate-900 leading-[1.1]">
                     데이터 파이프라인 <br>
                     <span class="text-blue-600">최적화 & 표준화</span>
                 </h1>
-                <p class="text-xl text-slate-600 font-light max-w-xl leading-relaxed">
+                <p class="text-2xl text-slate-600 font-light max-w-xl leading-relaxed">
                     시스템의 비효율을 개선하여 운영 비용을 절감하고,<br>
                     데이터의 신뢰성을 높이는 엔지니어링을 지향합니다.
                 </p>
-                <div class="flex gap-4 pt-4">
-                    <button onclick="document.querySelector('#projects').scrollIntoView({behavior:'smooth'})" class="bg-slate-900 text-white px-8 py-4 rounded-xl text-base font-medium hover:bg-slate-800 transition-colors shadow-lg">
+                <div class="flex gap-5 pt-4">
+                    <button onclick="document.querySelector('#projects').scrollIntoView({behavior:'smooth'})" class="bg-slate-900 text-white px-10 py-5 rounded-xl text-lg font-medium hover:bg-slate-800 transition-colors shadow-lg">
                         주요 프로젝트
                     </button>
-                    <a href="https://github.com/junhyeok94-la" target="_blank" class="border border-slate-300 bg-white px-8 py-4 rounded-xl text-base font-medium hover:bg-slate-50 transition-colors text-slate-700 flex items-center gap-2 shadow-sm">
+                    <a href="https://github.com/junhyeok94-la" target="_blank" class="border border-slate-300 bg-white px-10 py-5 rounded-xl text-lg font-medium hover:bg-slate-50 transition-colors text-slate-700 flex items-center gap-3 shadow-sm">
                         <i class="fab fa-github"></i> GitHub
                     </a>
                 </div>
             </div>
             <!-- Hero Stats Card -->
             <div class="hidden lg:block justify-self-end">
-                <div class="bg-white p-10 rounded-3xl shadow-2xl border border-slate-100 w-96 rotate-1 hover:rotate-0 transition-transform duration-300">
-                    <div class="flex justify-between items-center mb-8 border-b border-slate-100 pb-4">
+                <div class="bg-white p-12 rounded-[2rem] shadow-2xl border border-slate-100 w-[28rem] rotate-1 hover:rotate-0 transition-transform duration-300">
+                    <div class="flex justify-between items-center mb-10 border-b border-slate-100 pb-5">
                         <span class="text-sm font-bold text-slate-400">GS RETAIL PROJECT</span>
-                        <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span>
+                        <span class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
                     </div>
-                    <div class="space-y-6">
+                    <div class="space-y-8">
                         <div>
-                            <p class="text-sm text-slate-500 mb-2">Batch Completion</p>
+                            <p class="text-base text-slate-500 mb-2">Batch Completion</p>
                             <div class="flex items-baseline gap-3">
-                                <span class="text-4xl font-bold text-slate-900">5.5h</span>
-                                <span class="text-sm text-green-600 font-bold bg-green-50 px-2 py-1 rounded">Reduced</span>
+                                <span class="text-5xl font-bold text-slate-900">5.5h</span>
+                                <span class="text-sm text-green-600 font-bold bg-green-50 px-3 py-1 rounded">Reduced</span>
                             </div>
-                            <div class="text-xs text-slate-400 mt-2 font-mono">11:00 AM → 05:30 AM</div>
+                            <div class="text-sm text-slate-400 mt-2 font-mono">11:00 AM → 05:30 AM</div>
                         </div>
-                        <div class="pt-4 border-t border-slate-50">
-                            <p class="text-sm text-slate-500 mb-2">Resource Efficiency</p>
+                        <div class="pt-6 border-t border-slate-50">
+                            <p class="text-base text-slate-500 mb-2">Resource Efficiency</p>
                             <div class="flex items-baseline gap-3">
-                                <span class="text-2xl font-bold text-slate-800">35%</span>
-                                <span class="text-sm text-green-600 font-bold bg-green-50 px-2 py-1 rounded">Saved</span>
+                                <span class="text-3xl font-bold text-slate-800">35%</span>
+                                <span class="text-sm text-green-600 font-bold bg-green-50 px-3 py-1 rounded">Saved</span>
                             </div>
                         </div>
                     </div>
@@ -203,38 +203,38 @@
     </section>
 
     <!-- Impact Dashboard -->
-    <section id="impact" class="py-24 bg-white border-t border-slate-100">
+    <section id="impact" class="py-32 bg-white border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-8">
             <div class="section-intro">
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">Key Metrics</h2>
-                <p>주요 프로젝트를 통해 개선한 정량적 성과입니다.</p>
+                <h2 class="text-4xl font-bold text-slate-900 mb-6">Key Metrics</h2>
+                <p class="text-lg">주요 프로젝트를 통해 개선한 정량적 성과입니다.</p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-12 items-center">
-                <div class="chart-container bg-slate-50 rounded-2xl p-8 border border-slate-100 shadow-inner">
+            <div class="grid md:grid-cols-2 gap-16 items-center">
+                <div class="chart-container bg-slate-50 rounded-3xl p-10 border border-slate-100 shadow-inner h-[500px]">
                     <canvas id="batchChart"></canvas>
                 </div>
-                <div class="grid grid-cols-2 gap-6">
-                    <!-- Metric Cards with larger font -->
-                    <div class="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">Productivity</h4>
-                        <p class="text-3xl font-bold text-slate-900">300%</p>
-                        <p class="text-sm text-slate-500 mt-1">지방재정 플랫폼 One-Table 도입</p>
+                <div class="grid grid-cols-2 gap-8">
+                    <!-- Metric Cards -->
+                    <div class="p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <h4 class="text-sm font-bold text-slate-400 uppercase mb-3">Productivity</h4>
+                        <p class="text-4xl font-bold text-slate-900">300%</p>
+                        <p class="text-base text-slate-500 mt-2">지방재정 플랫폼 One-Table 도입</p>
                     </div>
-                    <div class="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">Integrity</h4>
-                        <p class="text-3xl font-bold text-slate-900">80% ↓</p>
-                        <p class="text-sm text-slate-500 mt-1">KICS ETL 표준화 에러율 감소</p>
+                    <div class="p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <h4 class="text-sm font-bold text-slate-400 uppercase mb-3">Integrity</h4>
+                        <p class="text-4xl font-bold text-slate-900">80% ↓</p>
+                        <p class="text-base text-slate-500 mt-2">KICS ETL 표준화 에러율 감소</p>
                     </div>
-                    <div class="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">Efficiency</h4>
-                        <p class="text-3xl font-bold text-slate-900">35% ↓</p>
-                        <p class="text-sm text-slate-500 mt-1">MWAA 메타 DB 리소스 절감</p>
+                    <div class="p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <h4 class="text-sm font-bold text-slate-400 uppercase mb-3">Efficiency</h4>
+                        <p class="text-4xl font-bold text-slate-900">35% ↓</p>
+                        <p class="text-base text-slate-500 mt-2">MWAA 메타 DB 리소스 절감</p>
                     </div>
-                    <div class="p-6 rounded-2xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <h4 class="text-xs font-bold text-slate-400 uppercase mb-2">Quality</h4>
-                        <p class="text-3xl font-bold text-slate-900">Stable</p>
-                        <p class="text-sm text-slate-500 mt-1">이중 검증 시스템 도입 완료</p>
+                    <div class="p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
+                        <h4 class="text-sm font-bold text-slate-400 uppercase mb-3">Quality</h4>
+                        <p class="text-4xl font-bold text-slate-900">Stable</p>
+                        <p class="text-base text-slate-500 mt-2">이중 검증 시스템 도입 완료</p>
                     </div>
                 </div>
             </div>
@@ -242,56 +242,56 @@
     </section>
 
     <!-- Project Section -->
-    <section id="projects" class="py-24 px-8 bg-slate-50">
+    <section id="projects" class="py-32 px-8 bg-slate-50">
         <div class="max-w-7xl mx-auto">
             <div class="section-intro">
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">Project History</h2>
-                <p>비즈니스 요구사항을 기술적으로 해결한 주요 사례입니다.</p>
+                <h2 class="text-4xl font-bold text-slate-900 mb-6">Project History</h2>
+                <p class="text-lg">비즈니스 요구사항을 기술적으로 해결한 주요 사례입니다.</p>
             </div>
 
-            <div class="space-y-16">
+            <div class="space-y-20">
                 <!-- Project 1 (GSRetail) -->
-                <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
+                <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
                     <div class="grid md:grid-cols-12 gap-0">
-                        <div class="md:col-span-4 bg-slate-800 text-white p-10 flex flex-col justify-between">
+                        <div class="md:col-span-4 bg-slate-800 text-white p-12 flex flex-col justify-between">
                             <div>
-                                <div class="text-slate-400 font-bold text-xs tracking-widest mb-4">RETAIL / COMMERCE</div>
-                                <h3 class="text-2xl font-bold mb-2">GS Retail HBU <br>플랫폼 최적화</h3>
-                                <p class="text-slate-400 text-sm mt-3">2025.07 - 현재</p>
+                                <div class="text-slate-400 font-bold text-sm tracking-widest mb-6">RETAIL / COMMERCE</div>
+                                <h3 class="text-3xl font-bold mb-3">GS Retail HBU <br>플랫폼 최적화</h3>
+                                <p class="text-slate-400 text-base mt-4">2025.07 - 현재</p>
                             </div>
-                            <div class="flex flex-wrap gap-2 mt-8">
-                                <span class="px-3 py-1.5 bg-slate-700 rounded-lg text-xs font-medium text-slate-200">AWS MWAA</span>
-                                <span class="px-3 py-1.5 bg-slate-700 rounded-lg text-xs font-medium text-slate-200">Redshift</span>
-                                <span class="px-3 py-1.5 bg-slate-700 rounded-lg text-xs font-medium text-slate-200">dbt</span>
+                            <div class="flex flex-wrap gap-3 mt-10">
+                                <span class="px-4 py-2 bg-slate-700 rounded-lg text-sm font-medium text-slate-200">AWS MWAA</span>
+                                <span class="px-4 py-2 bg-slate-700 rounded-lg text-sm font-medium text-slate-200">Redshift</span>
+                                <span class="px-4 py-2 bg-slate-700 rounded-lg text-sm font-medium text-slate-200">dbt</span>
                             </div>
                         </div>
-                        <div class="md:col-span-8 p-10">
-                            <div class="grid sm:grid-cols-2 gap-10 mb-10">
+                        <div class="md:col-span-8 p-12">
+                            <div class="grid sm:grid-cols-2 gap-12 mb-12">
                                 <div>
-                                    <h4 class="font-bold text-slate-900 text-base mb-3">Challenge</h4>
-                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                    <h4 class="font-bold text-slate-900 text-lg mb-4">Challenge</h4>
+                                    <p class="text-base text-slate-600 leading-relaxed">
                                         단순 시간 기반 스케줄링으로 인한 리소스 대기 발생 및 메타 DB 부하로 전체 배치 지연 빈번.
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-slate-900 text-base mb-3">Solution</h4>
-                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                    <h4 class="font-bold text-slate-900 text-lg mb-4">Solution</h4>
+                                    <p class="text-base text-slate-600 leading-relaxed">
                                         ExternalTaskSensor 기반 Event-Driven 구조 전환, Deferrable Operator 적용, DB 클렌징 자동화.
                                     </p>
                                 </div>
                             </div>
                             <!-- Images (Zoomable) -->
-                            <div class="grid sm:grid-cols-2 gap-6">
+                            <div class="grid sm:grid-cols-2 gap-8">
                                 <div>
                                     <span class="img-label">Architecture (Click to Expand)</span>
                                     <div class="img-container aspect-video" onclick="openLightbox('gsretail_airflow_architecture_overview.png')">
-                                        <img src="gsretail_airflow_architecture_overview.png" alt="Architecture" class="w-full h-full object-contain p-4" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-sm text-slate-400\'>Architecture Image</div>'">
+                                        <img src="gsretail_airflow_architecture_overview.png" alt="Architecture" class="w-full h-full object-contain p-4" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-base text-slate-400\'>Architecture Image</div>'">
                                     </div>
                                 </div>
                                 <div>
                                     <span class="img-label">Batch Flow (Click to Expand)</span>
                                     <div class="img-container aspect-video" onclick="openLightbox('gsretail_batch.png')">
-                                        <img src="gsretail_batch.png" alt="Flow" class="w-full h-full object-contain p-4" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-sm text-slate-400\'>Batch Flow Image</div>'">
+                                        <img src="gsretail_batch.png" alt="Flow" class="w-full h-full object-contain p-4" onerror="this.parentElement.innerHTML='<div class=\'flex items-center justify-center h-full text-base text-slate-400\'>Batch Flow Image</div>'">
                                     </div>
                                 </div>
                             </div>
@@ -299,136 +299,113 @@
                     </div>
                 </div>
 
-                <!-- Project 2 (KICS) - UPDATED -->
-                <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
+                <!-- Project 2 (KICS) - UPDATED ARCHITECTURE -->
+                <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
                     <div class="grid md:grid-cols-12 gap-0">
-                        <div class="md:col-span-4 bg-white border-r border-slate-100 p-10 flex flex-col justify-between">
+                        <div class="md:col-span-4 bg-white border-r border-slate-100 p-12 flex flex-col justify-between">
                             <div>
-                                <div class="text-slate-400 font-bold text-xs tracking-widest mb-4">PUBLIC SECTOR</div>
-                                <h3 class="text-2xl font-bold text-slate-900 mb-2">차세대 KICS <br>데이터 통합</h3>
-                                <p class="text-slate-500 text-sm mt-3">2023.09 - 2024.12</p>
+                                <div class="text-slate-400 font-bold text-sm tracking-widest mb-6">PUBLIC SECTOR</div>
+                                <h3 class="text-3xl font-bold text-slate-900 mb-3">차세대 KICS <br>데이터 통합</h3>
+                                <p class="text-slate-500 text-base mt-4">2023.09 - 2024.12</p>
                             </div>
-                            <div class="flex flex-wrap gap-2 mt-8">
-                                <span class="px-3 py-1.5 bg-slate-100 rounded-lg text-xs font-medium text-slate-600">TeraStream</span>
-                                <span class="px-3 py-1.5 bg-slate-100 rounded-lg text-xs font-medium text-slate-600">Talend</span>
-                                <span class="px-3 py-1.5 bg-slate-100 rounded-lg text-xs font-medium text-slate-600">Java/Python</span>
+                            <div class="flex flex-wrap gap-3 mt-10">
+                                <span class="px-4 py-2 bg-slate-100 rounded-lg text-sm font-medium text-slate-600">TeraStream</span>
+                                <span class="px-4 py-2 bg-slate-100 rounded-lg text-sm font-medium text-slate-600">PostgreSQL</span>
+                                <span class="px-4 py-2 bg-slate-100 rounded-lg text-sm font-medium text-slate-600">Python</span>
                             </div>
                         </div>
-                        <div class="md:col-span-8 p-10">
+                        <div class="md:col-span-8 p-12">
                             <!-- Challenge & Solution -->
-                            <div class="grid sm:grid-cols-2 gap-10 mb-8 border-b border-slate-100 pb-8">
+                            <div class="grid sm:grid-cols-2 gap-12 mb-10 border-b border-slate-100 pb-10">
                                 <div>
-                                    <h4 class="font-bold text-slate-900 text-base mb-3">Challenge</h4>
-                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                    <h4 class="font-bold text-slate-900 text-lg mb-4">Challenge</h4>
+                                    <p class="text-base text-slate-600 leading-relaxed">
                                         4개 기관의 데이터 형식 파편화 및 대용량 비정형 데이터(BLOB/CLOB) 전송 시 잦은 에러 발생.
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-slate-900 text-base mb-3">Solution</h4>
-                                    <p class="text-sm text-slate-600 leading-relaxed">
-                                        ETL 공통 가이드 수립으로 개발 표준화 및 법령 정보 수집 자동화 모듈 자체 개발.
+                                    <h4 class="font-bold text-slate-900 text-lg mb-4">Solution</h4>
+                                    <p class="text-base text-slate-600 leading-relaxed">
+                                        ETL 공통 가이드 수립으로 개발 표준화 및 메타데이터 기반 법령 정보 자동 수집 프로그램 개발.
                                     </p>
                                 </div>
                             </div>
 
-                            <!-- Law Info Collection Architecture (New Section based on PPT) -->
-                            <div class="mb-4">
-                                <h4 class="font-bold text-slate-900 text-base mb-4 flex items-center">
-                                    <i class="fas fa-sitemap mr-2 text-blue-600"></i>
-                                    법령정보 수집 시스템 아키텍처
+                            <!-- Law Info Collection Architecture (Updated Flow) -->
+                            <div class="mb-6">
+                                <h4 class="font-bold text-slate-900 text-lg mb-6 flex items-center">
+                                    <i class="fas fa-sitemap mr-3 text-blue-600"></i>
+                                    법령정보 메타 기반 수집 프로세스
                                 </h4>
-                                <div class="bg-slate-50 rounded-xl p-6 border border-slate-100">
-                                    <div class="flex flex-col md:flex-row gap-6">
+                                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100">
+                                    <div class="flex flex-col md:flex-row gap-8">
                                         <!-- Process Flow Visualization -->
                                         <div class="flex-1 space-y-0">
                                             <div class="process-step">
-                                                <h5>1. Scheduler (Airflow)</h5>
-                                                <p>Airflow DAG가 주기적으로 Talend ETL Job을 트리거</p>
+                                                <h5>1. Scheduling (TeraStream)</h5>
+                                                <p>배치 스케줄러가 정해진 주기에 수집 Job 트리거</p>
                                             </div>
                                             <div class="process-step">
-                                                <h5>2. ETL Tool (Talend)</h5>
-                                                <p>Talend 내부 모듈을 통해 Custom Python 수집 모듈 호출</p>
+                                                <h5>2. Meta Check</h5>
+                                                <p>메타 DB 조회: `수집여부=Y` 인 대상 필터링<br>(타 팀 웹페이지에서 관리됨)</p>
                                             </div>
                                             <div class="process-step">
-                                                <h5>3. API Collector (Python)</h5>
-                                                <p>법령정보 API 호출 (상세/변경 요청) 및 XML 데이터 수신</p>
+                                                <h5>3. Collection Logic (Python)</h5>
+                                                <p>
+                                                    - 신규 Y: 전체 데이터 수집<br>
+                                                    - 기존 Y: `마지막 수집일시` 기준 증분(Incremental) 수집
+                                                </p>
                                             </div>
                                             <div class="process-step">
-                                                <h5>4. Processing & Storage</h5>
-                                                <p>XML 파싱 -> CSV 변환 -> PostgreSQL 적재 (N'PIPE)</p>
+                                                <h5>4. Processing & Loading</h5>
+                                                <p>수집 데이터 정제(Cleansing) 후 PostgreSQL 적재</p>
                                             </div>
-                                        </div>
-                                        <!-- Tech Stack Box -->
-                                        <div class="md:w-1/3 bg-white rounded-lg p-5 border border-slate-200 shadow-sm h-fit">
-                                            <div class="text-xs font-bold text-slate-400 uppercase mb-3">Component Spec</div>
-                                            <ul class="space-y-3 text-sm text-slate-600">
-                                                <li class="flex items-center justify-between">
-                                                    <span>Lang</span>
-                                                    <span class="font-mono text-slate-800 bg-slate-100 px-1.5 rounded">Java 17, Py 3.12</span>
-                                                </li>
-                                                <li class="flex items-center justify-between">
-                                                    <span>Core</span>
-                                                    <span class="font-mono text-slate-800 bg-slate-100 px-1.5 rounded">Airflow 2.10.2</span>
-                                                </li>
-                                                <li class="flex items-center justify-between">
-                                                    <span>ETL</span>
-                                                    <span class="font-mono text-slate-800 bg-slate-100 px-1.5 rounded">Talend 8.01</span>
-                                                </li>
-                                                <li class="flex items-center justify-between">
-                                                    <span>DB</span>
-                                                    <span class="font-mono text-slate-800 bg-slate-100 px-1.5 rounded">PostgreSQL 16</span>
-                                                </li>
-                                                <li class="flex items-center justify-between">
-                                                    <span>OS</span>
-                                                    <span class="font-mono text-slate-800 bg-slate-100 px-1.5 rounded">Rocky Linux 8</span>
-                                                </li>
-                                            </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="mt-4 flex items-center justify-between">
-                                <span class="text-sm font-bold text-slate-500">Key Result</span>
-                                <span class="text-base font-bold text-slate-900">데이터 정합성 이슈 <span class="text-blue-600">80% 감소</span></span>
+                            <div class="mt-6 flex items-center justify-between">
+                                <span class="text-base font-bold text-slate-500">Key Result</span>
+                                <span class="text-lg font-bold text-slate-900">데이터 정합성 이슈 <span class="text-blue-600">80% 감소</span></span>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- Project 3 (Local Finance) -->
-                <div class="bg-white rounded-3xl overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
+                <!-- Project 3 (Local Finance) - UPDATED -->
+                <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
                     <div class="grid md:grid-cols-12 gap-0">
-                        <div class="md:col-span-4 bg-white border-r border-slate-100 p-10 flex flex-col justify-between">
+                        <div class="md:col-span-4 bg-white border-r border-slate-100 p-12 flex flex-col justify-between">
                             <div>
-                                <div class="text-slate-400 font-bold text-xs tracking-widest mb-4">PUBLIC / FINANCE</div>
-                                <h3 class="text-2xl font-bold text-slate-900 mb-2">차세대 지방재정 <br>시각화 플랫폼</h3>
-                                <p class="text-slate-500 text-sm mt-3">2021 - 2022</p>
+                                <div class="text-slate-400 font-bold text-sm tracking-widest mb-6">PUBLIC / FINANCE</div>
+                                <h3 class="text-3xl font-bold text-slate-900 mb-3">차세대 지방재정 <br>시각화 플랫폼</h3>
+                                <p class="text-slate-500 text-base mt-4">2021 - 2022</p>
                             </div>
-                            <div class="flex flex-wrap gap-2 mt-8">
-                                <span class="px-3 py-1.5 bg-slate-100 rounded-lg text-xs font-medium text-slate-600">BI Matrix</span>
-                                <span class="px-3 py-1.5 bg-slate-100 rounded-lg text-xs font-medium text-slate-600">Open API</span>
-                                <span class="px-3 py-1.5 bg-slate-100 rounded-lg text-xs font-medium text-slate-600">SQL</span>
+                            <div class="flex flex-wrap gap-3 mt-10">
+                                <span class="px-4 py-2 bg-slate-100 rounded-lg text-sm font-medium text-slate-600">BI Matrix</span>
+                                <span class="px-4 py-2 bg-slate-100 rounded-lg text-sm font-medium text-slate-600">InnoQuartz</span>
+                                <span class="px-4 py-2 bg-slate-100 rounded-lg text-sm font-medium text-slate-600">Talend Base</span>
                             </div>
                         </div>
-                        <div class="md:col-span-8 p-10">
-                            <div class="grid sm:grid-cols-2 gap-10 mb-6">
+                        <div class="md:col-span-8 p-12">
+                            <div class="grid sm:grid-cols-2 gap-12 mb-8">
                                 <div>
-                                    <h4 class="font-bold text-slate-900 text-base mb-3">Role & Challenge</h4>
-                                    <p class="text-sm text-slate-600 leading-relaxed">
-                                        OLAP Admin으로서 '정책지원시스템'의 200여 개 통계 화면 개발 및 관리를 담당. 화면별 개별 테이블 생성 방식으로 인한 개발 공수 과다 발생이 문제.
+                                    <h4 class="font-bold text-slate-900 text-lg mb-4">Role & Challenge</h4>
+                                    <p class="text-base text-slate-600 leading-relaxed">
+                                        OLAP Admin으로서 '정책지원시스템'의 200여 개 통계 화면 개발 및 관리를 담당. 화면별 개별 테이블 생성 방식으로 인한 개발 공수 과다 발생.
                                     </p>
                                 </div>
                                 <div>
-                                    <h4 class="font-bold text-slate-900 text-base mb-3">Solution (One-Table Strategy)</h4>
-                                    <p class="text-sm text-slate-600 leading-relaxed">
-                                        통계청 API 수집 프로그램을 자체 개발하고, '화면 ID'를 키로 하는 통합 테이블 구조를 설계하여 데이터 관리를 일원화. 메타데이터 기반으로 유지보수 효율 극대화.
+                                    <h4 class="font-bold text-slate-900 text-lg mb-4">Solution (One-Table Strategy)</h4>
+                                    <p class="text-base text-slate-600 leading-relaxed">
+                                        InnoQuartz(Talend기반)를 활용해 통계청 API 수집 프로그램을 호출하고, 수집 후 정제하여 '화면 ID' 키 기반 통합 테이블에 적재.
                                     </p>
                                 </div>
                             </div>
-                            <div class="mt-4 pt-4 border-t border-slate-50 flex items-center justify-between">
-                                <span class="text-sm font-bold text-slate-500">Result</span>
-                                <span class="text-base font-bold text-slate-900">화면 개발 생산성 300% 향상</span>
+                            <div class="mt-6 pt-6 border-t border-slate-50 flex items-center justify-between">
+                                <span class="text-base font-bold text-slate-500">Result</span>
+                                <span class="text-lg font-bold text-slate-900">화면 개발 생산성 300% 향상</span>
                             </div>
                         </div>
                     </div>
@@ -438,15 +415,15 @@
     </section>
 
     <!-- Engineering Standard Code Library Section -->
-    <section id="engineering" class="py-24 bg-slate-900 text-slate-300">
+    <section id="engineering" class="py-32 bg-slate-900 text-slate-300">
         <div class="max-w-7xl mx-auto px-8">
             <div class="section-intro">
-                <h2 class="text-3xl font-bold text-white mb-4">Code Library</h2>
-                <p class="text-slate-400 text-base">팀의 생산성과 안정성을 위해 표준화한 공통 모듈입니다.</p>
+                <h2 class="text-4xl font-bold text-white mb-6">Code Library</h2>
+                <p class="text-slate-400 text-lg">팀의 생산성과 안정성을 위해 표준화한 공통 모듈입니다.</p>
             </div>
 
             <!-- Code Viewer Component -->
-            <div class="code-window border border-slate-700 max-w-5xl mx-auto shadow-2xl">
+            <div class="code-window border border-slate-700 max-w-6xl mx-auto shadow-2xl">
                 <div class="code-header">
                     <div class="flex gap-2 mr-4">
                         <div class="dot dot-red"></div>
@@ -756,46 +733,46 @@ if __name__ == "__main__":
     </section>
 
     <!-- Troubleshooting Log -->
-    <section id="troubleshooting" class="py-24 bg-white">
+    <section id="troubleshooting" class="py-32 bg-white">
         <div class="max-w-7xl mx-auto px-8">
             <div class="section-intro">
-                <h2 class="text-3xl font-bold text-slate-900 mb-4">Problem Solving</h2>
-                <p>문제의 원인을 파악하고 구조적으로 해결한 기록입니다.</p>
+                <h2 class="text-4xl font-bold text-slate-900 mb-6">Problem Solving</h2>
+                <p class="text-lg">문제의 원인을 파악하고 구조적으로 해결한 기록입니다.</p>
             </div>
 
             <div class="grid lg:grid-cols-3 gap-8">
                 <!-- Case 1 -->
                 <div class="p-8 rounded-2xl border border-slate-100 shadow-sm bg-white hover:shadow-md transition-shadow">
-                    <div class="text-blue-600 font-bold text-xs uppercase mb-3">#MWAA_MAINTENANCE</div>
-                    <h4 class="text-base font-bold text-slate-900 mb-3">메인터넌스 시 태스크 중단</h4>
-                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                    <div class="text-blue-600 font-bold text-sm uppercase mb-4">#MWAA_MAINTENANCE</div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-4">메인터넌스 시 태스크 중단</h4>
+                    <p class="text-base text-slate-600 mb-6 leading-relaxed">
                         업데이트 시 워커 재시작으로 인한 태스크 강제 종료.
                     </p>
-                    <div class="bg-slate-50 p-4 rounded-xl text-xs font-mono text-slate-600">
+                    <div class="bg-slate-50 p-5 rounded-xl text-sm font-mono text-slate-600">
                         → Deferrable Operator 적용 (리소스 점유 최소화)<br>
                         → Retry Exponential Backoff 설정
                     </div>
                 </div>
                 <!-- Case 2 -->
                 <div class="p-8 rounded-2xl border border-slate-100 shadow-sm bg-white hover:shadow-md transition-shadow">
-                    <div class="text-blue-600 font-bold text-xs uppercase mb-3">#DB_PERFORMANCE</div>
-                    <h4 class="text-base font-bold text-slate-900 mb-3">Meta-DB CPU 급증</h4>
-                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                    <div class="text-blue-600 font-bold text-sm uppercase mb-4">#DB_PERFORMANCE</div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-4">Meta-DB CPU 급증</h4>
+                    <p class="text-base text-slate-600 mb-6 leading-relaxed">
                         Rendered Task Log 누적으로 인한 스케줄링 지연.
                     </p>
-                    <div class="bg-slate-50 p-4 rounded-xl text-xs font-mono text-slate-600">
+                    <div class="bg-slate-50 p-5 rounded-xl text-sm font-mono text-slate-600">
                         → DB Cleanse DAG 구현 (주기적 정리)<br>
                         → Vacuum & Analyze 자동화
                     </div>
                 </div>
                 <!-- Case 3 -->
                 <div class="p-8 rounded-2xl border border-slate-100 shadow-sm bg-white hover:shadow-md transition-shadow">
-                    <div class="text-blue-600 font-bold text-xs uppercase mb-3">#DATA_INTEGRITY</div>
-                    <h4 class="text-base font-bold text-slate-900 mb-3">검증 프로세스 부재</h4>
-                    <p class="text-sm text-slate-600 mb-4 leading-relaxed">
+                    <div class="text-blue-600 font-bold text-sm uppercase mb-4">#DATA_INTEGRITY</div>
+                    <h4 class="text-lg font-bold text-slate-900 mb-4">검증 프로세스 부재</h4>
+                    <p class="text-base text-slate-600 mb-6 leading-relaxed">
                         적재 후 데이터 중복 발생 가능성 존재.
                     </p>
-                    <div class="bg-slate-50 p-4 rounded-xl text-xs font-mono text-slate-600">
+                    <div class="bg-slate-50 p-5 rounded-xl text-sm font-mono text-slate-600">
                         → Double-Check DAG 도입<br>
                         → Count/Key 검증 후 Alert 발송
                     </div>
@@ -805,18 +782,18 @@ if __name__ == "__main__":
     </section>
 
     <!-- Footer -->
-    <footer class="py-16 border-t border-slate-100 bg-white text-center">
+    <footer class="py-20 border-t border-slate-100 bg-white text-center">
         <div class="max-w-4xl mx-auto px-8">
-            <h2 class="text-2xl font-bold text-slate-900 mb-8">Contact</h2>
-            <div class="flex justify-center gap-6 mb-10">
+            <h2 class="text-3xl font-bold text-slate-900 mb-10">Contact</h2>
+            <div class="flex justify-center gap-8 mb-12">
                 <a href="mailto:skwnsgur5919@naver.com" class="text-slate-400 hover:text-slate-900 transition-colors">
-                    <i class="fas fa-envelope text-2xl"></i>
+                    <i class="fas fa-envelope text-3xl"></i>
                 </a>
                 <a href="https://github.com/junhyeok94-la" target="_blank" class="text-slate-400 hover:text-slate-900 transition-colors">
-                    <i class="fab fa-github text-2xl"></i>
+                    <i class="fab fa-github text-3xl"></i>
                 </a>
             </div>
-            <p class="text-xs text-slate-400 uppercase tracking-widest">&copy; 2026 NA JUNHYEOK.</p>
+            <p class="text-sm text-slate-400 uppercase tracking-widest">&copy; 2026 NA JUNHYEOK.</p>
         </div>
     </footer>
 
