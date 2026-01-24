@@ -12,16 +12,14 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap');
         
-        /* 폰트 사이즈 전체 상향 조정 (기본 16px -> 18px 기준) */
+        /* 폰트 사이즈 전체 상향 조정 */
         :root { 
             --main-blue: #2563eb; 
             --bg-light: #f8fafc; 
             --code-bg: #1e1e1e; 
         }
         
-        html {
-            font-size: 18px; /* Base font size increased for better readability on monitors */
-        }
+        html { font-size: 18px; }
 
         body { 
             font-family: 'Pretendard', sans-serif; 
@@ -34,70 +32,29 @@
 
         .chart-container { position: relative; width: 100%; max-width: 800px; margin: 0 auto; height: 400px; }
         .glass-morphism { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid rgba(226, 232, 240, 1); }
-        
-        /* Section Intro size adjustment */
         .section-intro { max-width: 800px; margin: 0 auto 4rem; text-align: center; color: #64748b; line-height: 1.7; font-size: 1.05rem; }
-        
         .hover-scale { transition: transform 0.2s ease-out; }
         .hover-scale:hover { transform: translateY(-3px); }
         
         .img-container { background: #f8fafc; border-radius: 0.75rem; overflow: hidden; border: 1px solid #e2e8f0; transition: all 0.3s ease; position: relative; cursor: zoom-in; }
         .img-container:hover { border-color: #cbd5e1; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         .img-container:hover::after {
-            content: '\f00e';
-            font-family: "Font Awesome 6 Free";
-            font-weight: 900;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: rgba(37, 99, 235, 0.8);
-            font-size: 2.5rem;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            pointer-events: none;
+            content: '\f00e'; font-family: "Font Awesome 6 Free"; font-weight: 900;
+            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+            color: rgba(37, 99, 235, 0.8); font-size: 2.5rem; opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
         }
         .img-container:hover img { opacity: 0.9; filter: blur(1px); transition: all 0.3s ease; }
         .img-container:hover::after { opacity: 1; }
-
         .img-label { font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; display: block; }
         
-        /* Lightbox Styles */
-        .lightbox {
-            display: none;
-            position: fixed;
-            z-index: 9999;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
+        /* Lightbox */
+        .lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
         .lightbox.active { display: flex; opacity: 1; }
-        .lightbox-content {
-            max-width: 95%;
-            max-height: 95%;
-            border-radius: 4px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.5);
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
+        .lightbox-content { max-width: 95%; max-height: 95%; border-radius: 4px; box-shadow: 0 0 20px rgba(0,0,0,0.5); transform: scale(0.9); transition: transform 0.3s ease; }
         .lightbox.active .lightbox-content { transform: scale(1); }
-        .lightbox-close {
-            position: absolute;
-            top: 30px;
-            right: 40px;
-            color: white;
-            font-size: 50px;
-            cursor: pointer;
-            z-index: 10000;
-        }
+        .lightbox-close { position: absolute; top: 30px; right: 40px; color: white; font-size: 50px; cursor: pointer; z-index: 10000; }
 
-        /* Code Tab Styles */
+        /* Code Tab */
         .code-window { background: var(--code-bg); border-radius: 0.5rem; overflow: hidden; border: 1px solid #334155; }
         .code-header { background: #262626; padding: 0.75rem 1.25rem; display: flex; gap: 0.6rem; align-items: center; border-bottom: 1px solid #3f3f3f; }
         .dot { width: 0.75rem; height: 0.75rem; border-radius: 50%; opacity: 0.9; }
@@ -109,7 +66,6 @@
         .code-content { padding: 0; max-height: 500px; overflow-y: auto; }
         .code-content pre { margin: 0; }
         .code-content code { font-family: 'Fira Code', monospace; font-size: 0.9rem; line-height: 1.6; }
-        
         .code-content::-webkit-scrollbar { width: 8px; height: 8px; }
         .code-content::-webkit-scrollbar-track { background: #1e1e1e; }
         .code-content::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
@@ -120,6 +76,12 @@
         .process-step::before { content: ''; position: absolute; left: -0.55rem; top: 0.25rem; width: 1.1rem; height: 1.1rem; background: #fff; border: 3px solid #2563eb; border-radius: 50%; }
         .process-step h5 { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.25rem; }
         .process-step p { font-size: 0.9rem; color: #64748b; }
+
+        /* Architecture Diagram Box (CSS Only) */
+        .arch-box { display: flex; flex-direction: column; align-items: center; justify-content: center; background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 1rem; min-width: 100px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .arch-arrow { color: #94a3b8; font-size: 1.2rem; }
+        .arch-label { font-size: 0.75rem; font-weight: 700; color: #64748b; margin-bottom: 0.25rem; text-transform: uppercase; }
+        .arch-icon { font-size: 1.5rem; color: #2563eb; margin-bottom: 0.5rem; }
     </style>
 </head>
 <body class="selection:bg-slate-200 selection:text-slate-900">
@@ -211,7 +173,7 @@
             </div>
             
             <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="chart-container bg-slate-50 rounded-3xl p-10 border border-slate-100 shadow-inner h-[500px]">
+                <div class="chart-container bg-slate-50 rounded-2xl p-8 border border-slate-100 shadow-inner h-[500px]">
                     <canvas id="batchChart"></canvas>
                 </div>
                 <div class="grid grid-cols-2 gap-8">
@@ -299,7 +261,7 @@
                     </div>
                 </div>
 
-                <!-- Project 2 (KICS) - UPDATED ARCHITECTURE -->
+                <!-- Project 2 (KICS) -->
                 <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
                     <div class="grid md:grid-cols-12 gap-0">
                         <div class="md:col-span-4 bg-white border-r border-slate-100 p-12 flex flex-col justify-between">
@@ -326,12 +288,12 @@
                                 <div>
                                     <h4 class="font-bold text-slate-900 text-lg mb-4">Solution</h4>
                                     <p class="text-base text-slate-600 leading-relaxed">
-                                        ETL 공통 가이드 수립으로 개발 표준화 및 메타데이터 기반 법령 정보 자동 수집 프로그램 개발.
+                                        ETL 공통 가이드 수립으로 개발 표준화. 메타데이터(수집여부 Y/N) 기반의 지능형 수집 프로그램 개발.
                                     </p>
                                 </div>
                             </div>
 
-                            <!-- Law Info Collection Architecture (Updated Flow) -->
+                            <!-- Law Info Collection Architecture -->
                             <div class="mb-6">
                                 <h4 class="font-bold text-slate-900 text-lg mb-6 flex items-center">
                                     <i class="fas fa-sitemap mr-3 text-blue-600"></i>
@@ -343,7 +305,7 @@
                                         <div class="flex-1 space-y-0">
                                             <div class="process-step">
                                                 <h5>1. Scheduling (TeraStream)</h5>
-                                                <p>배치 스케줄러가 정해진 주기에 수집 Job 트리거</p>
+                                                <p>배치 스케줄러가 정해진 주기에 수집 Job 호출</p>
                                             </div>
                                             <div class="process-step">
                                                 <h5>2. Meta Check</h5>
@@ -353,7 +315,7 @@
                                                 <h5>3. Collection Logic (Python)</h5>
                                                 <p>
                                                     - 신규 Y: 전체 데이터 수집<br>
-                                                    - 기존 Y: `마지막 수집일시` 기준 증분(Incremental) 수집
+                                                    - 기존 Y: `마지막 수집일시` 기준 증분 수집
                                                 </p>
                                             </div>
                                             <div class="process-step">
@@ -373,7 +335,7 @@
                     </div>
                 </div>
 
-                <!-- Project 3 (Local Finance) - UPDATED -->
+                <!-- Project 3 (Local Finance) -->
                 <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
                     <div class="grid md:grid-cols-12 gap-0">
                         <div class="md:col-span-4 bg-white border-r border-slate-100 p-12 flex flex-col justify-between">
@@ -406,6 +368,92 @@
                             <div class="mt-6 pt-6 border-t border-slate-50 flex items-center justify-between">
                                 <span class="text-base font-bold text-slate-500">Result</span>
                                 <span class="text-lg font-bold text-slate-900">화면 개발 생산성 300% 향상</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 (LG Chem) - NEW ADDITION -->
+                <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
+                    <div class="grid md:grid-cols-12 gap-0">
+                        <div class="md:col-span-4 bg-white border-r border-slate-100 p-12 flex flex-col justify-between">
+                            <div>
+                                <div class="text-slate-400 font-bold text-sm tracking-widest mb-6">MANUFACTURING / CHEMICAL</div>
+                                <h3 class="text-3xl font-bold text-slate-900 mb-3">LG화학 전사 <br>데이터 레이크 구축</h3>
+                                <p class="text-slate-500 text-base mt-4">2021.07 - 2022.05</p>
+                            </div>
+                            <div class="flex flex-wrap gap-3 mt-10">
+                                <span class="px-4 py-2 bg-slate-100 rounded-lg text-sm font-medium text-slate-600">AWS S3</span>
+                                <span class="px-4 py-2 bg-slate-100 rounded-lg text-sm font-medium text-slate-600">AWS Glue</span>
+                                <span class="px-4 py-2 bg-slate-100 rounded-lg text-sm font-medium text-slate-600">Athena</span>
+                                <span class="px-4 py-2 bg-slate-100 rounded-lg text-sm font-medium text-slate-600">Airflow</span>
+                            </div>
+                        </div>
+                        <div class="md:col-span-8 p-12">
+                            <div class="grid sm:grid-cols-2 gap-12 mb-10 border-b border-slate-100 pb-10">
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-lg mb-4">Role & Challenge</h4>
+                                    <p class="text-base text-slate-600 leading-relaxed">
+                                        전사 데이터의 사일로(Silo) 문제 해결을 위해 다양한 원천 데이터(MES, IoT 등)를 클라우드 데이터 레이크로 통합. 적재 방식의 표준화 부재가 과제.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-lg mb-4">Solution</h4>
+                                    <p class="text-base text-slate-600 leading-relaxed">
+                                        AWS S3 기반의 Landing & Staging(L0) 레이어를 구축하고, 데이터 특성에 따라 적재 방식(증분/전체)을 표준화하여 안정적인 파이프라인 구현.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <!-- Architecture Visualization (CSS Based) -->
+                            <div class="mb-6">
+                                <h4 class="font-bold text-slate-900 text-lg mb-6 flex items-center">
+                                    <i class="fas fa-cloud mr-3 text-blue-600"></i>
+                                    Data Lake Pipeline Architecture
+                                </h4>
+                                <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100 overflow-x-auto">
+                                    <div class="flex items-center justify-between min-w-[600px] gap-4">
+                                        <!-- Step 1 -->
+                                        <div class="arch-box">
+                                            <div class="arch-label">SOURCE</div>
+                                            <div class="arch-icon"><i class="fas fa-database"></i></div>
+                                            <div class="text-xs text-slate-500">MES / IoT<br>On-Premise</div>
+                                        </div>
+                                        <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                                        <!-- Step 2 -->
+                                        <div class="arch-box border-blue-200 bg-blue-50">
+                                            <div class="arch-label text-blue-600">LANDING (LD)</div>
+                                            <div class="arch-icon"><i class="fab fa-aws"></i></div>
+                                            <div class="text-xs text-slate-600 font-bold">AWS S3<br>Raw Data</div>
+                                        </div>
+                                        <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                                        <!-- Step 3 -->
+                                        <div class="arch-box">
+                                            <div class="arch-label">ETL & CATALOG</div>
+                                            <div class="arch-icon"><i class="fas fa-cog"></i></div>
+                                            <div class="text-xs text-slate-500">AWS Glue<br>Crawler</div>
+                                        </div>
+                                        <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                                        <!-- Step 4 -->
+                                        <div class="arch-box border-green-200 bg-green-50">
+                                            <div class="arch-label text-green-600">STAGING (L0)</div>
+                                            <div class="arch-icon"><i class="fas fa-layer-group"></i></div>
+                                            <div class="text-xs text-slate-600 font-bold">Parquet<br>Partitioned</div>
+                                        </div>
+                                        <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                                        <!-- Step 5 -->
+                                        <div class="arch-box">
+                                            <div class="arch-label">ANALYSIS</div>
+                                            <div class="arch-icon"><i class="fas fa-search"></i></div>
+                                            <div class="text-xs text-slate-500">Amazon<br>Athena</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 flex items-center justify-between">
+                                <span class="text-base font-bold text-slate-500">Key Result</span>
+                                <span class="text-lg font-bold text-slate-900">전사 데이터 통합 기반(L0) 구축 완료</span>
                             </div>
                         </div>
                     </div>
