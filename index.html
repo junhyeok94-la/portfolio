@@ -196,8 +196,8 @@
                         </div>
                         <div class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded inline-block mb-3">Private Sector</div>
                         <h4 class="text-lg font-bold text-slate-900 mb-1">GS Retail HBU</h4>
-                        <p class="text-sm text-slate-500 mb-4">Resource Efficiency</p>
-                        <p class="text-3xl font-black text-slate-800">35% <span class="text-base font-normal text-slate-500">Saved</span></p>
+                        <p class="text-sm text-slate-500 mb-4">리소스 효율 (비용 절감)</p>
+                        <p class="text-3xl font-black text-slate-800">35% <span class="text-base font-normal text-slate-500">절감</span></p>
                     </div>
 
                     <!-- Card 2: GS Retail (Stability) -->
@@ -207,7 +207,7 @@
                         </div>
                         <div class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded inline-block mb-3">Private Sector</div>
                         <h4 class="text-lg font-bold text-slate-900 mb-1">GS Retail HBU</h4>
-                        <p class="text-sm text-slate-500 mb-4">System Stability</p>
+                        <p class="text-sm text-slate-500 mb-4">시스템 안정성</p>
                         <p class="text-3xl font-black text-green-600">Grade S</p>
                     </div>
 
@@ -218,7 +218,7 @@
                         </div>
                         <div class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded inline-block mb-3">Public Sector</div>
                         <h4 class="text-lg font-bold text-slate-900 mb-1">KICS (Legal)</h4>
-                        <p class="text-sm text-slate-500 mb-4">Error Reduction</p>
+                        <p class="text-sm text-slate-500 mb-4">에러 감소율</p>
                         <p class="text-3xl font-black text-slate-800">-80%</p>
                     </div>
 
@@ -229,8 +229,8 @@
                         </div>
                         <div class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded inline-block mb-3">Public Sector</div>
                         <h4 class="text-lg font-bold text-slate-900 mb-1">Local Finance</h4>
-                        <p class="text-sm text-slate-500 mb-4">Dev Productivity</p>
-                        <p class="text-3xl font-black text-slate-800">300% <span class="text-base font-normal text-slate-500">Up</span></p>
+                        <p class="text-sm text-slate-500 mb-4">개발 생산성</p>
+                        <p class="text-3xl font-black text-slate-800">300% <span class="text-base font-normal text-slate-500">향상</span></p>
                     </div>
 
                 </div>
@@ -876,17 +876,17 @@ if __name__ == "__main__":
             type: 'bar',
             indexAxis: 'y', // Horizontal bar chart
             data: {
-                labels: ['Legacy System', 'Optimized System'],
+                labels: ['Optimized System', 'Legacy System'],
                 datasets: [{
                     label: 'Batch Duration (Hours)',
-                    data: [11, 5.5], // 11 hours vs 5.5 hours to finish
+                    data: [5.5, 11], // 5.5 hours vs 11 hours
                     backgroundColor: [
-                        'rgba(203, 213, 225, 0.6)', // Slate-300 for Before
-                        'rgba(37, 99, 235, 0.8)'    // Blue-600 for After
+                        'rgba(37, 99, 235, 0.8)',    // Blue-600 for After (Optimized)
+                        'rgba(203, 213, 225, 0.6)'  // Slate-300 for Before (Legacy)
                     ],
                     borderColor: [
-                        'rgba(203, 213, 225, 1)',
-                        'rgba(37, 99, 235, 1)'
+                        'rgba(37, 99, 235, 1)',
+                        'rgba(203, 213, 225, 1)'
                     ],
                     borderWidth: 1,
                     borderRadius: 6,
@@ -902,13 +902,13 @@ if __name__ == "__main__":
                         enabled: false // Disable default tooltip
                     },
                     datalabels: {
-                        color: (context) => context.dataIndex === 1 ? 'white' : '#475569',
+                        color: (context) => context.dataIndex === 0 ? 'white' : '#475569',
                         anchor: 'end',
-                        align: (context) => context.dataIndex === 1 ? 'start' : 'end',
+                        align: (context) => context.dataIndex === 0 ? 'start' : 'end',
                         offset: 4,
                         font: { weight: 'bold' },
                         formatter: (value, context) => {
-                            if (context.dataIndex === 0) return 'Ends at 11:00 AM';
+                            if (context.dataIndex === 1) return 'Ends at 11:00 AM';
                             return 'Ends at 05:30 AM (Saved 5.5h)';
                         }
                     }
