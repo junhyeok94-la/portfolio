@@ -6,13 +6,14 @@
     <title>나준혁 | 데이터 엔지니어 포트폴리오</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Chart.js DataLabels Plugin -->
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap');
         
-        /* 폰트 사이즈 전체 상향 조정 */
         :root { 
             --main-blue: #2563eb; 
             --bg-light: #f8fafc; 
@@ -30,12 +31,13 @@
             line-height: 1.6;
         }
 
-        .chart-container { position: relative; width: 100%; max-width: 800px; margin: 0 auto; height: 400px; }
+        /* Utils */
         .glass-morphism { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid rgba(226, 232, 240, 1); }
         .section-intro { max-width: 800px; margin: 0 auto 4rem; text-align: center; color: #64748b; line-height: 1.7; font-size: 1.05rem; }
-        .hover-scale { transition: transform 0.2s ease-out; }
-        .hover-scale:hover { transform: translateY(-3px); }
+        .hover-scale { transition: transform 0.2s ease-out; cursor: pointer; }
+        .hover-scale:hover { transform: translateY(-5px); border-color: #3b82f6; }
         
+        /* Image & Lightbox */
         .img-container { background: #f8fafc; border-radius: 0.75rem; overflow: hidden; border: 1px solid #e2e8f0; transition: all 0.3s ease; position: relative; cursor: zoom-in; }
         .img-container:hover { border-color: #cbd5e1; box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); }
         .img-container:hover::after {
@@ -47,7 +49,6 @@
         .img-container:hover::after { opacity: 1; }
         .img-label { font-size: 0.8rem; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.75rem; display: block; }
         
-        /* Lightbox */
         .lightbox { display: none; position: fixed; z-index: 9999; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); justify-content: center; align-items: center; opacity: 0; transition: opacity 0.3s ease; }
         .lightbox.active { display: flex; opacity: 1; }
         .lightbox-content { max-width: 95%; max-height: 95%; border-radius: 4px; box-shadow: 0 0 20px rgba(0,0,0,0.5); transform: scale(0.9); transition: transform 0.3s ease; }
@@ -70,23 +71,22 @@
         .code-content::-webkit-scrollbar-track { background: #1e1e1e; }
         .code-content::-webkit-scrollbar-thumb { background: #475569; border-radius: 4px; }
 
-        /* Process Flow Styles */
+        /* Architecture Diagram Box */
+        .arch-box { display: flex; flex-direction: column; align-items: center; justify-content: center; background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 1rem; min-width: 100px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
+        .arch-arrow { color: #94a3b8; font-size: 1.2rem; }
+        .arch-label { font-size: 0.75rem; font-weight: 700; color: #64748b; margin-bottom: 0.25rem; text-transform: uppercase; }
+        .arch-icon { font-size: 1.5rem; color: #2563eb; margin-bottom: 0.5rem; }
+        
         .process-step { position: relative; padding-left: 2rem; border-left: 2px solid #e2e8f0; padding-bottom: 2rem; }
         .process-step:last-child { border-left: none; padding-bottom: 0; }
         .process-step::before { content: ''; position: absolute; left: -0.55rem; top: 0.25rem; width: 1.1rem; height: 1.1rem; background: #fff; border: 3px solid #2563eb; border-radius: 50%; }
         .process-step h5 { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.25rem; }
         .process-step p { font-size: 0.9rem; color: #64748b; }
-
-        /* Architecture Diagram Box (CSS Only) */
-        .arch-box { display: flex; flex-direction: column; align-items: center; justify-content: center; background: white; border: 1px solid #cbd5e1; border-radius: 8px; padding: 1rem; min-width: 100px; text-align: center; box-shadow: 0 2px 4px rgba(0,0,0,0.05); }
-        .arch-arrow { color: #94a3b8; font-size: 1.2rem; }
-        .arch-label { font-size: 0.75rem; font-weight: 700; color: #64748b; margin-bottom: 0.25rem; text-transform: uppercase; }
-        .arch-icon { font-size: 1.5rem; color: #2563eb; margin-bottom: 0.5rem; }
     </style>
 </head>
 <body class="selection:bg-slate-200 selection:text-slate-900">
 
-    <!-- Lightbox Modal -->
+    <!-- Lightbox -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close">&times;</span>
         <img id="lightbox-img" class="lightbox-content" src="" alt="Expanded View">
@@ -103,7 +103,6 @@
                 <a href="#impact" class="hover:text-blue-600 transition-colors">Impact</a>
                 <a href="#projects" class="hover:text-blue-600 transition-colors">Projects</a>
                 <a href="#engineering" class="hover:text-blue-600 transition-colors">Code</a>
-                <a href="#troubleshooting" class="hover:text-blue-600 transition-colors">Review</a>
             </div>
             <a href="mailto:skwnsgur5919@naver.com" class="text-base font-medium bg-slate-100 hover:bg-slate-200 text-slate-700 px-6 py-3 rounded-lg transition-colors">
                 Contact
@@ -118,7 +117,7 @@
                 <div class="inline-block px-5 py-2 rounded bg-slate-100 text-slate-600 text-sm font-bold tracking-wide">
                     5 Years Data Engineer
                 </div>
-                <h1 class="text-6xl md:text-7xl font-bold tracking-tight text-slate-900 leading-[1.1]">
+                <h1 class="text-6xl md:text-7xl font-bold tracking-tight text-slate-900 leading-[1.15]">
                     데이터 파이프라인 <br>
                     <span class="text-blue-600">최적화 & 표준화</span>
                 </h1>
@@ -135,28 +134,32 @@
                     </a>
                 </div>
             </div>
-            <!-- Hero Stats Card -->
-            <div class="hidden lg:block justify-self-end">
-                <div class="bg-white p-12 rounded-[2rem] shadow-2xl border border-slate-100 w-[28rem] rotate-1 hover:rotate-0 transition-transform duration-300">
-                    <div class="flex justify-between items-center mb-10 border-b border-slate-100 pb-5">
-                        <span class="text-sm font-bold text-slate-400">GS RETAIL PROJECT</span>
-                        <span class="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
-                    </div>
-                    <div class="space-y-8">
-                        <div>
-                            <p class="text-base text-slate-500 mb-2">Batch Completion</p>
-                            <div class="flex items-baseline gap-3">
-                                <span class="text-5xl font-bold text-slate-900">5.5h</span>
-                                <span class="text-sm text-green-600 font-bold bg-green-50 px-3 py-1 rounded">Reduced</span>
-                            </div>
-                            <div class="text-sm text-slate-400 mt-2 font-mono">11:00 AM → 05:30 AM</div>
+            <!-- Hero Graphic (Abstract) -->
+            <div class="hidden lg:flex justify-end relative">
+                <div class="absolute -z-10 top-0 right-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-60"></div>
+                <div class="bg-white p-10 rounded-[2rem] shadow-2xl border border-slate-100 w-[30rem]">
+                    <div class="flex justify-between items-center mb-8 border-b border-slate-100 pb-4">
+                        <span class="text-sm font-bold text-slate-400">OPTIMIZATION RESULT</span>
+                        <div class="flex gap-1">
+                            <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-400"></span>
                         </div>
-                        <div class="pt-6 border-t border-slate-50">
-                            <p class="text-base text-slate-500 mb-2">Resource Efficiency</p>
-                            <div class="flex items-baseline gap-3">
-                                <span class="text-3xl font-bold text-slate-800">35%</span>
-                                <span class="text-sm text-green-600 font-bold bg-green-50 px-3 py-1 rounded">Saved</span>
-                            </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div class="flex justify-between items-center">
+                            <span class="text-slate-500 text-sm">Processing Time</span>
+                            <span class="text-slate-900 font-bold">-50%</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                            <div class="bg-blue-600 h-full w-1/2 rounded-full"></div>
+                        </div>
+                        <div class="flex justify-between items-center pt-2">
+                            <span class="text-slate-500 text-sm">System Stability</span>
+                            <span class="text-blue-600 font-bold">Grade S</span>
+                        </div>
+                        <div class="w-full bg-slate-100 h-3 rounded-full overflow-hidden">
+                            <div class="bg-blue-600 h-full w-full rounded-full"></div>
                         </div>
                     </div>
                 </div>
@@ -164,40 +167,72 @@
         </div>
     </section>
 
-    <!-- Impact Dashboard -->
+    <!-- Impact Dashboard (Key Metrics) -->
     <section id="impact" class="py-32 bg-white border-t border-slate-100">
         <div class="max-w-7xl mx-auto px-8">
             <div class="section-intro">
                 <h2 class="text-4xl font-bold text-slate-900 mb-6">Key Metrics</h2>
-                <p class="text-lg">주요 프로젝트를 통해 개선한 정량적 성과입니다.</p>
+                <p class="text-lg">주요 프로젝트에서 달성한 정량적 성과입니다.<br>각 카드를 클릭하면 해당 프로젝트 상세 내용으로 이동합니다.</p>
             </div>
             
-            <div class="grid md:grid-cols-2 gap-16 items-center">
-                <div class="chart-container bg-slate-50 rounded-2xl p-8 border border-slate-100 shadow-inner h-[500px]">
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                <!-- Chart Section -->
+                <div class="chart-container bg-slate-50 rounded-2xl p-8 border border-slate-100 shadow-inner h-[500px] flex flex-col justify-center">
+                    <h3 class="text-lg font-bold text-slate-700 mb-4 text-center">GS Retail Batch Process Timeline</h3>
                     <canvas id="batchChart"></canvas>
+                    <p class="text-center text-sm text-slate-500 mt-4">
+                        <i class="fas fa-arrow-up text-blue-500 mr-1"></i>
+                        배치 종료 시간을 5.5시간 앞당겨 비즈니스 의사결정 속도를 높였습니다.
+                    </p>
                 </div>
-                <div class="grid grid-cols-2 gap-8">
-                    <!-- Metric Cards -->
-                    <div class="p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <h4 class="text-sm font-bold text-slate-400 uppercase mb-3">Productivity</h4>
-                        <p class="text-4xl font-bold text-slate-900">300%</p>
-                        <p class="text-base text-slate-500 mt-2">지방재정 플랫폼 One-Table 도입</p>
+
+                <!-- Metrics Grid -->
+                <div class="grid grid-cols-2 gap-6">
+                    
+                    <!-- Card 1: GS Retail -->
+                    <div onclick="document.getElementById('project-gsretail').scrollIntoView({behavior:'smooth'})" class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover-scale relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-stopwatch text-6xl text-blue-600"></i>
+                        </div>
+                        <div class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded inline-block mb-3">Private Sector</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-1">GS Retail HBU</h4>
+                        <p class="text-sm text-slate-500 mb-4">Resource Efficiency</p>
+                        <p class="text-3xl font-black text-slate-800">35% <span class="text-base font-normal text-slate-500">Saved</span></p>
                     </div>
-                    <div class="p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <h4 class="text-sm font-bold text-slate-400 uppercase mb-3">Integrity</h4>
-                        <p class="text-4xl font-bold text-slate-900">80% ↓</p>
-                        <p class="text-base text-slate-500 mt-2">KICS ETL 표준화 에러율 감소</p>
+
+                    <!-- Card 2: GS Retail (Stability) -->
+                    <div onclick="document.getElementById('project-gsretail').scrollIntoView({behavior:'smooth'})" class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover-scale relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-server text-6xl text-green-600"></i>
+                        </div>
+                        <div class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded inline-block mb-3">Private Sector</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-1">GS Retail HBU</h4>
+                        <p class="text-sm text-slate-500 mb-4">System Stability</p>
+                        <p class="text-3xl font-black text-green-600">Grade S</p>
                     </div>
-                    <div class="p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <h4 class="text-sm font-bold text-slate-400 uppercase mb-3">Efficiency</h4>
-                        <p class="text-4xl font-bold text-slate-900">35% ↓</p>
-                        <p class="text-base text-slate-500 mt-2">MWAA 메타 DB 리소스 절감</p>
+
+                    <!-- Card 3: KICS -->
+                    <div onclick="document.getElementById('project-kics').scrollIntoView({behavior:'smooth'})" class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover-scale relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-file-shield text-6xl text-purple-600"></i>
+                        </div>
+                        <div class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded inline-block mb-3">Public Sector</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-1">KICS (Legal)</h4>
+                        <p class="text-sm text-slate-500 mb-4">Error Reduction</p>
+                        <p class="text-3xl font-black text-slate-800">-80%</p>
                     </div>
-                    <div class="p-8 rounded-3xl bg-white border border-slate-100 shadow-sm hover:shadow-md transition-shadow">
-                        <h4 class="text-sm font-bold text-slate-400 uppercase mb-3">Quality</h4>
-                        <p class="text-4xl font-bold text-slate-900">Stable</p>
-                        <p class="text-base text-slate-500 mt-2">이중 검증 시스템 도입 완료</p>
+
+                    <!-- Card 4: Local Finance -->
+                    <div onclick="document.getElementById('project-finance').scrollIntoView({behavior:'smooth'})" class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover-scale relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+                            <i class="fas fa-chart-line text-6xl text-orange-600"></i>
+                        </div>
+                        <div class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded inline-block mb-3">Public Sector</div>
+                        <h4 class="text-lg font-bold text-slate-900 mb-1">Local Finance</h4>
+                        <p class="text-sm text-slate-500 mb-4">Dev Productivity</p>
+                        <p class="text-3xl font-black text-slate-800">300% <span class="text-base font-normal text-slate-500">Up</span></p>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -213,11 +248,12 @@
 
             <div class="space-y-20">
                 <!-- Project 1 (GSRetail) -->
-                <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
+                <div id="project-gsretail" class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
                     <div class="grid md:grid-cols-12 gap-0">
                         <div class="md:col-span-4 bg-slate-800 text-white p-12 flex flex-col justify-between">
                             <div>
-                                <div class="text-slate-400 font-bold text-sm tracking-widest mb-6">RETAIL / COMMERCE</div>
+                                <div class="text-blue-300 font-bold text-sm tracking-widest mb-2">[Private Sector]</div>
+                                <div class="text-slate-400 font-bold text-xs tracking-widest mb-6">RETAIL / COMMERCE</div>
                                 <h3 class="text-3xl font-bold mb-3">GS Retail HBU <br>플랫폼 최적화</h3>
                                 <p class="text-slate-400 text-base mt-4">2025.07 - 현재</p>
                             </div>
@@ -262,11 +298,12 @@
                 </div>
 
                 <!-- Project 2 (KICS) -->
-                <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
+                <div id="project-kics" class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
                     <div class="grid md:grid-cols-12 gap-0">
                         <div class="md:col-span-4 bg-white border-r border-slate-100 p-12 flex flex-col justify-between">
                             <div>
-                                <div class="text-slate-400 font-bold text-sm tracking-widest mb-6">PUBLIC SECTOR</div>
+                                <div class="text-slate-500 font-bold text-sm tracking-widest mb-2">[Public Sector]</div>
+                                <div class="text-slate-400 font-bold text-xs tracking-widest mb-6">LEGAL / JUSTICE</div>
                                 <h3 class="text-3xl font-bold text-slate-900 mb-3">차세대 KICS <br>데이터 통합</h3>
                                 <p class="text-slate-500 text-base mt-4">2023.09 - 2024.12</p>
                             </div>
@@ -301,7 +338,6 @@
                                 </h4>
                                 <div class="bg-slate-50 rounded-2xl p-8 border border-slate-100">
                                     <div class="flex flex-col md:flex-row gap-8">
-                                        <!-- Process Flow Visualization -->
                                         <div class="flex-1 space-y-0">
                                             <div class="process-step">
                                                 <h5>1. Scheduling (TeraStream)</h5>
@@ -336,11 +372,12 @@
                 </div>
 
                 <!-- Project 3 (Local Finance) -->
-                <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
+                <div id="project-finance" class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
                     <div class="grid md:grid-cols-12 gap-0">
                         <div class="md:col-span-4 bg-white border-r border-slate-100 p-12 flex flex-col justify-between">
                             <div>
-                                <div class="text-slate-400 font-bold text-sm tracking-widest mb-6">PUBLIC / FINANCE</div>
+                                <div class="text-slate-500 font-bold text-sm tracking-widest mb-2">[Public Sector]</div>
+                                <div class="text-slate-400 font-bold text-xs tracking-widest mb-6">FINANCE</div>
                                 <h3 class="text-3xl font-bold text-slate-900 mb-3">차세대 지방재정 <br>시각화 플랫폼</h3>
                                 <p class="text-slate-500 text-base mt-4">2021 - 2022</p>
                             </div>
@@ -373,12 +410,13 @@
                     </div>
                 </div>
 
-                <!-- Project 4 (LG Chem) - NEW ADDITION -->
+                <!-- Project 4 (LG Chem) -->
                 <div class="bg-white rounded-[2.5rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-xl transition-shadow duration-300">
                     <div class="grid md:grid-cols-12 gap-0">
                         <div class="md:col-span-4 bg-white border-r border-slate-100 p-12 flex flex-col justify-between">
                             <div>
-                                <div class="text-slate-400 font-bold text-sm tracking-widest mb-6">MANUFACTURING / CHEMICAL</div>
+                                <div class="text-blue-600 font-bold text-sm tracking-widest mb-2">[Private Sector]</div>
+                                <div class="text-slate-400 font-bold text-xs tracking-widest mb-6">MANUFACTURING</div>
                                 <h3 class="text-3xl font-bold text-slate-900 mb-3">LG화학 전사 <br>데이터 레이크 구축</h3>
                                 <p class="text-slate-500 text-base mt-4">2021.07 - 2022.05</p>
                             </div>
@@ -780,68 +818,19 @@ if __name__ == "__main__":
         </div>
     </section>
 
-    <!-- Troubleshooting Log -->
-    <section id="troubleshooting" class="py-32 bg-white">
-        <div class="max-w-7xl mx-auto px-8">
-            <div class="section-intro">
-                <h2 class="text-4xl font-bold text-slate-900 mb-6">Problem Solving</h2>
-                <p class="text-lg">문제의 원인을 파악하고 구조적으로 해결한 기록입니다.</p>
-            </div>
-
-            <div class="grid lg:grid-cols-3 gap-8">
-                <!-- Case 1 -->
-                <div class="p-8 rounded-2xl border border-slate-100 shadow-sm bg-white hover:shadow-md transition-shadow">
-                    <div class="text-blue-600 font-bold text-sm uppercase mb-4">#MWAA_MAINTENANCE</div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-4">메인터넌스 시 태스크 중단</h4>
-                    <p class="text-base text-slate-600 mb-6 leading-relaxed">
-                        업데이트 시 워커 재시작으로 인한 태스크 강제 종료.
-                    </p>
-                    <div class="bg-slate-50 p-5 rounded-xl text-sm font-mono text-slate-600">
-                        → Deferrable Operator 적용 (리소스 점유 최소화)<br>
-                        → Retry Exponential Backoff 설정
-                    </div>
-                </div>
-                <!-- Case 2 -->
-                <div class="p-8 rounded-2xl border border-slate-100 shadow-sm bg-white hover:shadow-md transition-shadow">
-                    <div class="text-blue-600 font-bold text-sm uppercase mb-4">#DB_PERFORMANCE</div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-4">Meta-DB CPU 급증</h4>
-                    <p class="text-base text-slate-600 mb-6 leading-relaxed">
-                        Rendered Task Log 누적으로 인한 스케줄링 지연.
-                    </p>
-                    <div class="bg-slate-50 p-5 rounded-xl text-sm font-mono text-slate-600">
-                        → DB Cleanse DAG 구현 (주기적 정리)<br>
-                        → Vacuum & Analyze 자동화
-                    </div>
-                </div>
-                <!-- Case 3 -->
-                <div class="p-8 rounded-2xl border border-slate-100 shadow-sm bg-white hover:shadow-md transition-shadow">
-                    <div class="text-blue-600 font-bold text-sm uppercase mb-4">#DATA_INTEGRITY</div>
-                    <h4 class="text-lg font-bold text-slate-900 mb-4">검증 프로세스 부재</h4>
-                    <p class="text-base text-slate-600 mb-6 leading-relaxed">
-                        적재 후 데이터 중복 발생 가능성 존재.
-                    </p>
-                    <div class="bg-slate-50 p-5 rounded-xl text-sm font-mono text-slate-600">
-                        → Double-Check DAG 도입<br>
-                        → Count/Key 검증 후 Alert 발송
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Footer -->
     <footer class="py-20 border-t border-slate-100 bg-white text-center">
         <div class="max-w-4xl mx-auto px-8">
-            <h2 class="text-3xl font-bold text-slate-900 mb-10">Contact</h2>
-            <div class="flex justify-center gap-8 mb-12">
+            <h2 class="text-2xl font-bold text-slate-900 mb-8">Contact</h2>
+            <div class="flex justify-center gap-6 mb-10">
                 <a href="mailto:skwnsgur5919@naver.com" class="text-slate-400 hover:text-slate-900 transition-colors">
-                    <i class="fas fa-envelope text-3xl"></i>
+                    <i class="fas fa-envelope text-2xl"></i>
                 </a>
                 <a href="https://github.com/junhyeok94-la" target="_blank" class="text-slate-400 hover:text-slate-900 transition-colors">
-                    <i class="fab fa-github text-3xl"></i>
+                    <i class="fab fa-github text-2xl"></i>
                 </a>
             </div>
-            <p class="text-sm text-slate-400 uppercase tracking-widest">&copy; 2026 NA JUNHYEOK.</p>
+            <p class="text-xs text-slate-400 uppercase tracking-widest">&copy; 2026 NA JUNHYEOK.</p>
         </div>
     </footer>
 
@@ -878,21 +867,30 @@ if __name__ == "__main__":
             document.body.style.overflow = ''; // Restore scrolling
         }
 
-        // 3. Charts - Simplified Design with Larger Fonts
-        Chart.defaults.font.size = 14; // Increase global chart font size
+        // 3. Charts - Improved Visualization
+        Chart.defaults.font.size = 14; 
         Chart.defaults.font.family = "'Pretendard', sans-serif";
 
         const ctxBatch = document.getElementById('batchChart').getContext('2d');
         new Chart(ctxBatch, {
             type: 'bar',
+            indexAxis: 'y', // Horizontal bar chart
             data: {
-                labels: ['Before', 'After'],
+                labels: ['Legacy System', 'Optimized System'],
                 datasets: [{
-                    label: 'Batch Time (AM)',
-                    data: [11.0, 5.5],
-                    backgroundColor: ['#e2e8f0', '#2563eb'],
+                    label: 'Batch Duration (Hours)',
+                    data: [11, 5.5], // 11 hours vs 5.5 hours to finish
+                    backgroundColor: [
+                        'rgba(203, 213, 225, 0.6)', // Slate-300 for Before
+                        'rgba(37, 99, 235, 0.8)'    // Blue-600 for After
+                    ],
+                    borderColor: [
+                        'rgba(203, 213, 225, 1)',
+                        'rgba(37, 99, 235, 1)'
+                    ],
+                    borderWidth: 1,
                     borderRadius: 6,
-                    barThickness: 50
+                    barPercentage: 0.6
                 }]
             },
             options: {
@@ -901,28 +899,33 @@ if __name__ == "__main__":
                 plugins: {
                     legend: { display: false },
                     tooltip: {
-                        backgroundColor: '#1e293b',
-                        padding: 12,
-                        titleFont: { size: 14 },
-                        bodyFont: { size: 14 },
-                        callbacks: {
-                            label: (ctx) => `Time: ${Math.floor(ctx.raw)}:${(ctx.raw % 1 * 60).toString().padStart(2, '0')} AM`
+                        enabled: false // Disable default tooltip
+                    },
+                    datalabels: {
+                        color: (context) => context.dataIndex === 1 ? 'white' : '#475569',
+                        anchor: 'end',
+                        align: (context) => context.dataIndex === 1 ? 'start' : 'end',
+                        offset: 4,
+                        font: { weight: 'bold' },
+                        formatter: (value, context) => {
+                            if (context.dataIndex === 0) return 'Ends at 11:00 AM';
+                            return 'Ends at 05:30 AM (Saved 5.5h)';
                         }
                     }
                 },
                 scales: {
-                    y: {
+                    x: {
                         beginAtZero: true,
                         max: 12,
-                        grid: { display: true, borderDash: [4, 4], drawBorder: false },
-                        ticks: { font: { size: 12 }, color: '#94a3b8' }
+                        title: { display: true, text: 'Completion Time (AM)' },
+                        grid: { display: true, borderDash: [4, 4] }
                     },
-                    x: { 
-                        grid: { display: false },
-                        ticks: { font: { size: 14, weight: 'bold' }, color: '#64748b' }
+                    y: { 
+                        grid: { display: false }
                     }
                 }
-            }
+            },
+            plugins: [ChartDataLabels]
         });
     </script>
 </body>
