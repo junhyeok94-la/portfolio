@@ -432,13 +432,13 @@
                                 <div>
                                     <h4 class="font-bold text-slate-900 text-lg mb-4">Role & Challenge</h4>
                                     <p class="text-base text-slate-600 leading-relaxed">
-                                        전사 데이터의 사일로(Silo) 문제 해결을 위해 다양한 원천 데이터(MES, IoT 등)를 클라우드 데이터 레이크로 통합. 적재 방식의 표준화 부재가 과제.
+                                        수백 개의 이기종 테이블을 데이터 레이크로 통합해야 하는 초기 프로젝트. 무분별한 전체 적재(Full Load)로 인한 리소스 비효율 및 지연 발생이 우려됨.
                                     </p>
                                 </div>
                                 <div>
                                     <h4 class="font-bold text-slate-900 text-lg mb-4">Solution</h4>
                                     <p class="text-base text-slate-600 leading-relaxed">
-                                        AWS S3 기반의 Landing & Staging(L0) 레이어를 구축하고, 데이터 특성에 따라 적재 방식(증분/전체)을 표준화하여 안정적인 파이프라인 구현.
+                                        테이블별 데이터 특성(Volume, Volatility)을 프로파일링하여 최적의 적재 전략(Full vs Incremental)을 수립하고, 표준화된 Airflow DAG를 구현하여 안정적 파이프라인 구축.
                                     </p>
                                 </div>
                             </div>
