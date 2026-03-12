@@ -107,3 +107,622 @@
                     </a>
                 </div>
             </div>
+            
+            <div class="hidden lg:flex justify-end relative">
+                <div class="absolute -z-10 top-0 right-0 w-96 h-96 bg-blue-100 rounded-full blur-3xl opacity-50"></div>
+                <div class="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 w-[28rem]">
+                    <div class="flex justify-between items-center mb-8 border-b border-slate-100 pb-4">
+                        <span class="text-xs font-bold text-slate-400 tracking-wider">PERFORMANCE IMPACT</span>
+                        <div class="flex gap-1.5">
+                            <span class="w-3 h-3 rounded-full bg-red-400"></span>
+                            <span class="w-3 h-3 rounded-full bg-yellow-400"></span>
+                            <span class="w-3 h-3 rounded-full bg-green-400"></span>
+                        </div>
+                    </div>
+                    <div class="space-y-6">
+                        <div>
+                            <div class="flex justify-between items-center mb-2">
+                                <span class="text-slate-500 font-medium">Batch Processing Time</span>
+                                <span class="text-blue-600 font-black text-lg">-50%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-blue-600 h-full w-1/2 rounded-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2 pt-2">
+                                <span class="text-slate-500 font-medium">Resource Cost (EC2/MWAA)</span>
+                                <span class="text-green-500 font-black text-lg">-35%</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-green-500 h-full w-[65%] rounded-full"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="flex justify-between items-center mb-2 pt-2">
+                                <span class="text-slate-500 font-medium">System Stability & Integrity</span>
+                                <span class="text-slate-900 font-black text-lg">High</span>
+                            </div>
+                            <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+                                <div class="bg-slate-800 h-full w-full rounded-full"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="impact" class="py-24 bg-white border-t border-slate-100">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="section-intro">
+                <h2 class="text-3xl font-extrabold text-slate-900 mb-4">Key Metrics</h2>
+                <p>단순한 파이프라인 구축을 넘어, 비즈니스에 실질적으로 기여한 정량적 성과입니다.<br>각 카드를 클릭하면 상세 프로젝트로 이동합니다.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-12 items-start">
+                <div class="chart-container bg-slate-50 rounded-2xl p-6 border border-slate-100 shadow-sm h-[450px] flex flex-col justify-center">
+                    <h3 class="text-base font-bold text-slate-700 mb-4 text-center">GS Retail Batch Optimization</h3>
+                    <div class="relative h-full w-full">
+                        <canvas id="batchChart"></canvas>
+                    </div>
+                    <p class="text-center text-sm font-medium text-slate-600 mt-4 bg-white p-3 rounded-lg border border-slate-200">
+                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>배치 종료 시간을 <b>5.5시간</b> 앞당겨 현업의 의사결정 속도를 크게 높였습니다.
+                    </p>
+                </div>
+
+                <div class="grid grid-cols-2 gap-5">
+                    
+                    <div onclick="document.getElementById('project-gsretail').scrollIntoView({behavior:'smooth'})" class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover-scale relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                            <i class="fas fa-wallet text-6xl text-blue-600"></i>
+                        </div>
+                        <div class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded inline-block mb-3">Private Sector</div>
+                        <h4 class="text-base font-bold text-slate-900 mb-1">GS Retail HBU</h4>
+                        <p class="text-xs text-slate-500 mb-4 font-medium">리소스 효율 (비용 절감)</p>
+                        <p class="text-3xl font-black text-blue-600">35% <span class="text-sm font-bold text-slate-400">절감</span></p>
+                    </div>
+
+                    <div onclick="document.getElementById('project-gsretail').scrollIntoView({behavior:'smooth'})" class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover-scale relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                            <i class="fas fa-server text-6xl text-green-600"></i>
+                        </div>
+                        <div class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded inline-block mb-3">Private Sector</div>
+                        <h4 class="text-base font-bold text-slate-900 mb-1">GS Retail HBU</h4>
+                        <p class="text-xs text-slate-500 mb-4 font-medium">파이프라인 안정성</p>
+                        <p class="text-3xl font-black text-green-500">High</p>
+                    </div>
+
+                    <div onclick="document.getElementById('project-kics').scrollIntoView({behavior:'smooth'})" class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover-scale relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                            <i class="fas fa-shield-alt text-6xl text-slate-600"></i>
+                        </div>
+                        <div class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded inline-block mb-3">Public Sector</div>
+                        <h4 class="text-base font-bold text-slate-900 mb-1">KICS (Legal)</h4>
+                        <p class="text-xs text-slate-500 mb-4 font-medium">데이터 정합성 개선</p>
+                        <p class="text-3xl font-black text-slate-800">80% <span class="text-sm font-bold text-slate-400">향상</span></p>
+                    </div>
+
+                    <div onclick="document.getElementById('project-finance').scrollIntoView({behavior:'smooth'})" class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover-scale relative overflow-hidden group">
+                        <div class="absolute top-0 right-0 p-4 opacity-5 group-hover:opacity-10 transition-opacity">
+                            <i class="fas fa-layer-group text-6xl text-slate-600"></i>
+                        </div>
+                        <div class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded inline-block mb-3">Public Sector</div>
+                        <h4 class="text-base font-bold text-slate-900 mb-1">Local Finance</h4>
+                        <p class="text-xs text-slate-500 mb-4 font-medium">개발/유지보수 생산성</p>
+                        <p class="text-3xl font-black text-slate-800">High</p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects" class="py-24 px-6 bg-slate-50">
+        <div class="max-w-7xl mx-auto">
+            <div class="section-intro">
+                <h2 class="text-3xl font-extrabold text-slate-900 mb-4">Project History</h2>
+                <p>단순 기능 구현을 넘어, 아키텍처 관점에서 비즈니스 문제를 해결한 주요 사례들입니다.</p>
+            </div>
+
+            <div class="space-y-16">
+                
+                <div id="project-gsretail" class="bg-white rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div class="grid md:grid-cols-12 gap-0">
+                        <div class="md:col-span-4 bg-slate-900 text-white p-10 flex flex-col justify-between relative overflow-hidden">
+                            <div class="absolute -right-10 -bottom-10 opacity-10"><i class="fas fa-shopping-cart text-9xl"></i></div>
+                            <div class="relative z-10">
+                                <div class="text-blue-400 font-bold text-xs tracking-widest mb-3">[Private Sector]</div>
+                                <h3 class="text-2xl font-bold mb-3 leading-tight">GS Retail HBU <br>데이터 플랫폼 전환</h3>
+                                <p class="text-slate-400 text-sm mt-2 font-medium">2025.07 - 현재</p>
+                                <p class="text-slate-300 text-sm mt-3 font-light border-l-2 border-blue-500 pl-3">배치 아키텍처 최적화 및 파이프라인 고도화 리드</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-10 relative z-10">
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded text-xs font-semibold text-slate-300">AWS MWAA</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded text-xs font-semibold text-slate-300">ECS Fargate</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded text-xs font-semibold text-slate-300">Redshift</span>
+                                <span class="px-3 py-1 bg-slate-800 border border-slate-700 rounded text-xs font-semibold text-slate-300">dbt</span>
+                            </div>
+                        </div>
+                        <div class="md:col-span-8 p-10">
+                            <div class="grid sm:grid-cols-2 gap-10 mb-10 pb-8 border-b border-slate-100">
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-base mb-3 flex items-center"><i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>The Challenge</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        기존 레거시는 단순 시간 기반 스케줄링(Time-based)으로 묶여 있어, 선행 작업 지연 시 <strong>유휴 리소스 대기</strong>가 발생하고 메타 DB 락(Lock) 병목 현상으로 전체 배치 종료 시간이 지연되는 고질적인 문제가 있었습니다.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-base mb-3 flex items-center"><i class="fas fa-lightbulb text-blue-500 mr-2"></i>The Solution</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        AWS MWAA 환경에서 <code>ExternalTaskSensor</code>를 활용한 <strong>이벤트 기반(Event-Driven) 파이프라인</strong>으로 전면 개편했습니다. 또한 <code>Deferrable Operator</code>를 도입하여 Worker 슬롯 낭비를 막고 리소스 효율을 극대화했습니다.
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-6">
+                                <h4 class="font-bold text-slate-900 text-sm mb-4 tracking-wide">💡 핵심 개선 아키텍처 흐름</h4>
+                                <div class="arch-container">
+                                    <div class="arch-box bg-white">
+                                        <div class="arch-label">Airflow Trigger</div>
+                                        <div class="arch-icon"><i class="fas fa-clock"></i></div>
+                                        <div class="text-[10px] text-slate-500 font-medium">Sensor/Event Trigger<br>(Wait without Worker)</div>
+                                    </div>
+                                    <div class="arch-arrow"><i class="fas fa-chevron-right"></i></div>
+                                    <div class="arch-box border-blue-200 bg-blue-50 shadow-md">
+                                        <div class="arch-label text-blue-700">AWS Fargate</div>
+                                        <div class="arch-icon"><i class="fab fa-aws"></i></div>
+                                        <div class="text-[10px] text-slate-600 font-bold">Deferrable Operator<br>Resource Optimized</div>
+                                    </div>
+                                    <div class="arch-arrow"><i class="fas fa-chevron-right"></i></div>
+                                    <div class="arch-box bg-white">
+                                        <div class="arch-label">Transformation</div>
+                                        <div class="arch-icon"><i class="fas fa-layer-group"></i></div>
+                                        <div class="text-[10px] text-slate-500 font-medium">dbt Core<br>Data Modeling</div>
+                                    </div>
+                                    <div class="arch-arrow"><i class="fas fa-chevron-right"></i></div>
+                                    <div class="arch-box border-red-200 bg-red-50 shadow-md">
+                                        <div class="arch-label text-red-700">Data Warehouse</div>
+                                        <div class="arch-icon"><i class="fas fa-database"></i></div>
+                                        <div class="text-[10px] text-slate-600 font-bold">Amazon Redshift<br>Ready for BI</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="project-kics" class="bg-white rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div class="grid md:grid-cols-12 gap-0">
+                        <div class="md:col-span-4 bg-slate-50 border-r border-slate-200 p-10 flex flex-col justify-between">
+                            <div>
+                                <div class="text-slate-500 font-bold text-xs tracking-widest mb-3">[Public Sector]</div>
+                                <h3 class="text-2xl font-bold text-slate-900 mb-3 leading-tight">차세대 KICS <br>데이터 플랫폼 구축</h3>
+                                <p class="text-slate-500 text-sm mt-2 font-medium">2023.09 - 2024.12</p>
+                                <p class="text-slate-600 text-sm mt-3 font-medium border-l-2 border-slate-400 pl-3">ETL 표준화 및 공통 모듈 개발</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-10">
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs font-semibold text-slate-600">TeraStream</span>
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs font-semibold text-slate-600">Hive / Hadoop</span>
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs font-semibold text-slate-600">Python</span>
+                            </div>
+                        </div>
+                        <div class="md:col-span-8 p-10">
+                            <div class="grid sm:grid-cols-2 gap-10 mb-10 pb-8 border-b border-slate-100">
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-base mb-3 flex items-center"><i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>The Challenge</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        4개 독립 기관의 데이터 형식이 파편화되어 있었고, 대용량 비정형 데이터(BLOB/CLOB) 전송 시 파이프라인 단절과 에러가 빈번히 발생했습니다.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-base mb-3 flex items-center"><i class="fas fa-lightbulb text-blue-500 mr-2"></i>The Solution</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        ETL 공통 가이드를 수립하여 개발 표준을 확립했습니다. 메타데이터(수집여부 Y/N)를 동적으로 읽어 처리하는 지능형 Python 수집 모듈을 개발하여 운영 편의성을 높였습니다.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div>
+                                <h4 class="font-bold text-slate-900 text-sm mb-4 tracking-wide">💡 메타 기반 자동화 수집 흐름</h4>
+                                <div class="bg-slate-50 rounded-xl p-6 border border-slate-200">
+                                    <div class="flex flex-col md:flex-row gap-6">
+                                        <div class="flex-1 space-y-0">
+                                            <div class="process-step">
+                                                <h5>1. Scheduling (TeraStream)</h5>
+                                                <p>배치 스케줄러가 정해진 주기에 동적 수집 Job 호출</p>
+                                            </div>
+                                            <div class="process-step">
+                                                <h5>2. Meta Lookup</h5>
+                                                <p>타 팀 웹페이지에서 관리되는 메타 DB 조회: `수집여부=Y` 인 대상 자동 필터링</p>
+                                            </div>
+                                            <div class="process-step">
+                                                <h5>3. Adaptive Collection (Python)</h5>
+                                                <p>신규 테이블은 전체 수집(Full), 기존 테이블은 마지막 수집일시 기준 증분 수집(Incremental) 자동 분기</p>
+                                            </div>
+                                            <div class="process-step">
+                                                <h5>4. Processing & Loading</h5>
+                                                <p>수집 데이터 정제(Cleansing) 후 Hadoop(Hive) 안정적 적재</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="project-finance" class="bg-white rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div class="grid md:grid-cols-12 gap-0">
+                        <div class="md:col-span-4 bg-slate-50 border-r border-slate-200 p-10 flex flex-col justify-between">
+                            <div>
+                                <div class="text-slate-500 font-bold text-xs tracking-widest mb-3">[Public Sector]</div>
+                                <h3 class="text-2xl font-bold text-slate-900 mb-3 leading-tight">차세대 지방재정 <br>데이터 플랫폼</h3>
+                                <p class="text-slate-500 text-sm mt-2 font-medium">2021.08 - 2022.12</p>
+                                <p class="text-slate-600 text-sm mt-3 font-medium border-l-2 border-slate-400 pl-3">시각화(BI) 개발 및 OLAP Admin</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-10">
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs font-semibold text-slate-600">BI Matrix</span>
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs font-semibold text-slate-600">InnoQuartz</span>
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs font-semibold text-slate-600">SAP Hana</span>
+                            </div>
+                        </div>
+                        <div class="md:col-span-8 p-10">
+                            <div class="grid sm:grid-cols-2 gap-10 mb-8">
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-base mb-3 flex items-center"><i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>The Challenge</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        '정책지원시스템' 내 200여 개의 통계 화면을 관리해야 했습니다. 기존에는 화면별로 1:1 개별 물리 테이블을 생성하는 방식을 취하여 개발 리소스 낭비가 극심했습니다.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-base mb-3 flex items-center"><i class="fas fa-lightbulb text-blue-500 mr-2"></i>One-Table Strategy</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        InnoQuartz를 활용해 통계청 API 수집을 자동화하고, 정제된 데이터를 <strong>'화면 ID'를 파티션 키로 가지는 단일 통합 테이블(One-Table)</strong> 모델로 전환하여 유지보수 비용을 획기적으로 줄였습니다.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                    <div class="grid md:grid-cols-12 gap-0">
+                        <div class="md:col-span-4 bg-slate-50 border-r border-slate-200 p-10 flex flex-col justify-between">
+                            <div>
+                                <div class="text-blue-600 font-bold text-xs tracking-widest mb-3">[Private Sector]</div>
+                                <h3 class="text-2xl font-bold text-slate-900 mb-3 leading-tight">LG화학 전사 <br>데이터 레이크 구축</h3>
+                                <p class="text-slate-500 text-sm mt-2 font-medium">2021.07 - 2022.05</p>
+                                <p class="text-slate-600 text-sm mt-3 font-medium border-l-2 border-blue-500 pl-3">정형 데이터 적재 표준화</p>
+                            </div>
+                            <div class="flex flex-wrap gap-2 mt-10">
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs font-semibold text-slate-600">AWS S3/Glue</span>
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs font-semibold text-slate-600">Athena</span>
+                                <span class="px-3 py-1 bg-white border border-slate-200 rounded text-xs font-semibold text-slate-600">Airflow</span>
+                            </div>
+                        </div>
+                        <div class="md:col-span-8 p-10">
+                            <div class="grid sm:grid-cols-2 gap-10 mb-10 pb-8 border-b border-slate-100">
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-base mb-3 flex items-center"><i class="fas fa-exclamation-triangle text-yellow-500 mr-2"></i>The Challenge</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        수백 개의 이기종 데이터 소스를 S3 레이크로 통합해야 하는 초기 단계 프로젝트로, 무분별한 Full Load로 인한 클라우드 비용 낭비와 적재 지연이 우려되었습니다.
+                                    </p>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-slate-900 text-base mb-3 flex items-center"><i class="fas fa-lightbulb text-blue-500 mr-2"></i>The Solution</h4>
+                                    <p class="text-sm text-slate-600 leading-relaxed">
+                                        테이블별 데이터 특성(Volume, 변동성)을 사전 프로파일링하여 최적의 적재 전략(Full vs Incremental)을 수립했습니다. 표준화된 Airflow DAG 템플릿을 개발하여 적재 파이프라인의 양산을 가속화했습니다.
+                                    </p>
+                                </div>
+                            </div>
+
+                            <div class="mb-2">
+                                <h4 class="font-bold text-slate-900 text-sm mb-4 tracking-wide">💡 Data Lake 파이프라인 구성도</h4>
+                                <div class="arch-container">
+                                    <div class="arch-box bg-white">
+                                        <div class="arch-label">Source</div>
+                                        <div class="arch-icon"><i class="fas fa-database"></i></div>
+                                        <div class="text-[10px] text-slate-500 font-medium">MES / ERP<br>On-Premise</div>
+                                    </div>
+                                    <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                                    <div class="arch-box border-slate-300 bg-slate-100">
+                                        <div class="arch-label text-slate-700">Landing (LD)</div>
+                                        <div class="arch-icon"><i class="fab fa-aws"></i></div>
+                                        <div class="text-[10px] text-slate-600 font-bold">AWS S3<br>Raw Data</div>
+                                    </div>
+                                    <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                                    <div class="arch-box bg-white">
+                                        <div class="arch-label">ETL Process</div>
+                                        <div class="arch-icon"><i class="fas fa-cog"></i></div>
+                                        <div class="text-[10px] text-slate-500 font-medium">AWS Glue<br>Data Catalog</div>
+                                    </div>
+                                    <div class="arch-arrow"><i class="fas fa-arrow-right"></i></div>
+                                    <div class="arch-box border-green-200 bg-green-50 shadow-sm">
+                                        <div class="arch-label text-green-700">Staging (L0)</div>
+                                        <div class="arch-icon"><i class="fas fa-layer-group"></i></div>
+                                        <div class="text-[10px] text-green-800 font-bold">Parquet<br>Partitioned</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="engineering" class="py-24 bg-slate-900 text-slate-300">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="section-intro">
+                <h2 class="text-3xl font-extrabold text-white mb-4">Code Snippets</h2>
+                <p class="text-slate-400">조직의 생산성과 파이프라인 안정성을 위해 직접 설계하고 표준화한 공통 모듈들입니다.</p>
+            </div>
+
+            <div class="code-window max-w-5xl mx-auto shadow-2xl">
+                <div class="code-header">
+                    <div class="flex gap-2 mr-4">
+                        <div class="dot dot-red"></div>
+                        <div class="dot dot-yellow"></div>
+                        <div class="dot dot-green"></div>
+                    </div>
+                    <div class="text-xs font-mono text-slate-400">~/airflow/dags/utils/common_utils.py</div>
+                </div>
+                
+                <div class="code-tabs" id="codeTabs">
+                    <div class="code-tab active" onclick="switchTab('sensor')"><i class="fas fa-eye mr-2 text-xs"></i>Data Sensor</div>
+                    <div class="code-tab" onclick="switchTab('trigger')"><i class="fas fa-bolt mr-2 text-xs"></i>Triggerer</div>
+                    <div class="code-tab" onclick="switchTab('logging')"><i class="fas fa-file-alt mr-2 text-xs"></i>Bulk Logging</div>
+                    <div class="code-tab" onclick="switchTab('openapi')"><i class="fas fa-globe mr-2 text-xs"></i>API Automation</div>
+                </div>
+
+                <div class="code-content bg-[#1e1e1e]">
+                    <div id="content-sensor" class="block">
+                        <pre><code class="language-python">
+def default_sensor(func):
+    """
+    [Data Integrity Guard]
+    모든 컨트롤 DAG에서 공통으로 사용하는 유효성 체크용 데코레이터.
+    이전 배치의 성공 여부를 동적으로 추적하여 데이터 누락(Data Hole)을 원천 차단합니다.
+    """
+    def wrapper(*args, **kwargs):
+        context = get_current_context()
+        schedule_type, schedule_interval = args[0], args[1]
+        dag_run = context['dag_run']
+        
+        # 테스트 및 수동 실행 시 By-pass
+        if dag_run.run_type == 'manual':
+            return True
+       
+        elif dag_run.run_type == 'scheduled':
+            my_dag_id = context['dag'].dag_id 
+            current_execution_date = context['execution_date']
+            
+            # 스케줄 타입에 따른 선행 배치 기준일 산출
+            match schedule_type:
+                case ScheduleType.SCHEDULE_HOUR:
+                    pre_execution_date = [current_execution_date - timedelta(hours=i*schedule_interval) for i in range(1,11)]
+                case ScheduleType.SCHEDULE_DAY:
+                    pre_execution_date = current_execution_date - timedelta(days=schedule_interval)
+
+            # Airflow Meta DB를 조회하여 선행 DagRun 상태 검증
+            my_pre_dagruns = DagRun.find(dag_id=my_dag_id, execution_date=pre_execution_date)
+            
+            if my_pre_dagruns:
+                for run in my_pre_dagruns:
+                    if run.state != State.SUCCESS:
+                        logging.error(f"선행 배치({run.state}) 미완료로 인한 실행 중단 방어.")
+                        return False 
+
+            return func(args, kwargs)
+            
+    return wrapper
+                        </code></pre>
+                    </div>
+
+                    <div id="content-trigger" class="hidden">
+                        <pre><code class="language-python">
+def create_trigger_task(trigger_dag_id, task_id):
+    """
+    [Resource Optimization]
+    비동기 처리를 위한 TriggerDagRunOperator 헬퍼 함수입니다.
+    deferrable=True 옵션을 표준화하여, 타겟 DAG가 끝날 때까지 
+    현재 Worker 슬롯을 점유하지 않고 Triggerer 노드에서 가볍게 대기하도록 설계했습니다.
+    """
+    return TriggerDagRunOperator(
+        task_id=task_id,
+        trigger_dag_id=trigger_dag_id,
+        reset_dag_run=True,
+        wait_for_completion=True,
+        deferrable=True,  # 핵심: Worker 슬롯 절약 (비용 최적화)
+        poke_interval=60,
+        logical_date="{{ execution_date }}",
+        conf={
+            # XCom을 활용한 데이터 파라미터 컨텍스트 자동 전파
+            'data_interval_start': "{{ task_instance.xcom_pull(key='data_interval_start') }}",
+            'data_interval_end': "{{ task_instance.xcom_pull(key='data_interval_end') }}"
+        }
+    )
+                        </code></pre>
+                    </div>
+
+                    <div id="content-logging" class="hidden">
+                        <pre><code class="language-python">
+class RedshiftLogUtility:
+    """
+    [Performance Tuning]
+    Redshift에 커스텀 ETL 로그를 기록하는 유틸리티.
+    건별 INSERT 시 발생하는 I/O 병목을 제거하기 위해 메모리 버퍼링 및 Bulk Insert 패턴을 적용했습니다.
+    """
+    DETAIL_LOG_COLUMNS = ["DAG_ID", "RUN_ID", "TASK_ID", "STATUS", "AFFECTED_ROWS", "SQL_EXEC_TIME"] # 생략
+
+    def __init__(self, redshift_conn_id: str):
+        self.hook = RedshiftSQLHook(redshift_conn_id=redshift_conn_id)
+        self.detail_buffer = [] # 로그 버퍼링 큐
+
+    def insert_query_log(self, **kwargs):
+        """메인 ETL 로직 내에서 호출되어 로그를 버퍼에 적재 (DB I/O 발생 X)"""
+        params_tuple = (
+            kwargs['dag_id'], kwargs['run_id'], kwargs['task_id'], kwargs['status'],
+            kwargs['affected_rows'], kwargs.get('exec_time')
+        )
+        self.detail_buffer.append(params_tuple)
+
+    def flush_detail_logs(self):
+        """
+        태스크 완료/실패 시 한 번만 호출되어 버퍼의 모든 로그를 일괄 적재합니다.
+        Redshift의 COPY/Bulk Insert 특성을 살려 로깅 오버헤드를 90% 이상 절감했습니다.
+        """
+        if not self.detail_buffer: return
+
+        try:
+            self.hook.insert_rows(
+                table='admin.nbs_log_detail',
+                rows=self.detail_buffer,
+                target_fields=self.DETAIL_LOG_COLUMNS,
+                commit_every=0  # 단일 트랜잭션으로 강제
+            )
+        except Exception as e:
+            logging.error(f"Bulk Log Insertion Failed: {e}")
+        finally:
+            self.detail_buffer.clear()
+                        </code></pre>
+                    </div>
+
+                    <div id="content-openapi" class="hidden">
+                        <pre><code class="language-python">
+import pandas as pd
+import requests
+from fake_useragent import UserAgent
+
+def fetch_api_to_dataframe(json_url):
+    """
+    [Data Ingestion Strategy]
+    단순 수집을 넘어, 차단 방지와 확장성을 고려한 외부 API 수집 모듈입니다.
+    """
+    # IP/세션 차단 우회를 위한 Random User-Agent 주입
+    headers = {'User-Agent': UserAgent().random}
+    response = requests.get(json_url, headers=headers, timeout=30)
+    
+    if response.status_code == 200:
+        return pd.json_normalize(response.json())
+    raise ConnectionError(f"API 호출 실패: {response.status_code}")
+
+def run_pipeline():
+    # 1. 메타 데이터(Excel/DB) 기반 설정 주도형(Configuration-driven) 아키텍처
+    meta_df = pd.read_excel('JSON_TO_CSV_LIST.xlsx', sheet_name='화면목록')
+    target_tables = meta_df[meta_df['파일생성'] == 'O']
+
+    for _, row in target_tables.iterrows():
+        try:
+            # 대용량 데이터 분할 페이징(Pagination) 로직
+            if '대용량' in row['비고']:
+                # ... recursive fetch logic ...
+                pass
+            
+            result_df = fetch_api_to_dataframe(f"https://api.url/{row['tblId']}")
+            result_df.to_csv(f"output/{row['화면명']}.csv", encoding='utf-8-sig', index=False)
+            
+        except Exception as e:
+            logging.error(f"[{row['화면명']}] 파이프라인 중단: {e}")
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-12 border-t border-slate-200 bg-slate-50 text-center">
+        <div class="max-w-4xl mx-auto px-6">
+            <h2 class="text-xl font-bold text-slate-900 mb-6">Let's Connect</h2>
+            <div class="flex justify-center gap-6 mb-8">
+                <a href="mailto:skwnsgur5919@naver.com" class="text-slate-400 hover:text-blue-600 transition-colors">
+                    <i class="fas fa-envelope text-2xl"></i>
+                </a>
+                <a href="https://github.com/junhyeok94-la" target="_blank" class="text-slate-400 hover:text-slate-900 transition-colors">
+                    <i class="fab fa-github text-2xl"></i>
+                </a>
+            </div>
+            <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">&copy; 2026 NA JUNHYEOK. Data Engineer.</p>
+        </div>
+    </footer>
+
+    <script>
+        // 1. Initialize Highlight.js
+        hljs.highlightAll();
+
+        // 2. Code Tab Switching Logic
+        function switchTab(tabId) {
+            const contents = document.querySelectorAll('.code-content > div');
+            contents.forEach(el => {
+                el.classList.remove('block');
+                el.classList.add('hidden');
+            });
+            
+            const tabs = document.querySelectorAll('.code-tab');
+            tabs.forEach(el => el.classList.remove('active'));
+            
+            document.getElementById('content-' + tabId).classList.remove('hidden');
+            document.getElementById('content-' + tabId).classList.add('block');
+            
+            const activeTab = document.querySelector(`.code-tab[onclick="switchTab('${tabId}')"]`);
+            if(activeTab) activeTab.classList.add('active');
+        }
+
+        // 3. Charts - Improved Visualization
+        Chart.defaults.font.size = 13; 
+        Chart.defaults.font.family = "'Pretendard', sans-serif";
+
+        const ctxBatch = document.getElementById('batchChart').getContext('2d');
+        new Chart(ctxBatch, {
+            type: 'bar',
+            indexAxis: 'y', 
+            data: {
+                labels: ['최적화 이후 (Event-Driven)', '기존 환경 (Time-Based)'],
+                datasets: [{
+                    label: 'Batch Duration (Hours)',
+                    data: [5.5, 11], 
+                    backgroundColor: [
+                        'rgba(37, 99, 235, 0.9)',    
+                        'rgba(203, 213, 225, 0.5)'  
+                    ],
+                    borderRadius: 4,
+                    barPercentage: 0.5
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { enabled: false },
+                    datalabels: {
+                        color: (context) => context.dataIndex === 0 ? 'white' : '#475569',
+                        anchor: 'end',
+                        align: (context) => context.dataIndex === 0 ? 'start' : 'end',
+                        offset: 6,
+                        font: { weight: 'bold', size: 12 },
+                        formatter: (value, context) => {
+                            if (context.dataIndex === 1) return '기존 11시간 소요';
+                            return '5.5시간 만에 종료 (50% 단축)';
+                        }
+                    }
+                },
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        max: 12,
+                        title: { display: true, text: '소요 시간 (Hours)', font: {weight: 'bold'} },
+                        grid: { borderDash: [4, 4], color: '#e2e8f0' }
+                    },
+                    y: { 
+                        grid: { display: false },
+                        ticks: { font: {weight: 'bold'} }
+                    }
+                }
+            },
+            plugins: [ChartDataLabels]
+        });
+    </script>
+</body>
+</html>
