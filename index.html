@@ -5,8 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>나준혁 | 데이터 엔지니어 포트폴리오</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@300;400;500;600;700;800&display=swap');
@@ -29,8 +27,6 @@
         /* Utils */
         .glass-morphism { background: rgba(255, 255, 255, 0.95); border-bottom: 1px solid rgba(226, 232, 240, 1); backdrop-filter: blur(10px); }
         .section-intro { max-width: 800px; margin: 0 auto 4rem; text-align: center; color: #64748b; line-height: 1.7; font-size: 1.1rem; }
-        .hover-scale { transition: transform 0.2s ease-out, border-color 0.2s; cursor: pointer; }
-        .hover-scale:hover { transform: translateY(-5px); border-color: #3b82f6; box-shadow: 0 10px 25px -5px rgba(59, 130, 246, 0.1); }
         
         /* Architecture Diagram Box */
         .arch-container { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; justify-content: center; padding: 1rem; background: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0; }
@@ -38,12 +34,6 @@
         .arch-arrow { color: #94a3b8; font-size: 1.2rem; }
         .arch-label { font-size: 0.75rem; font-weight: 800; color: #64748b; margin-bottom: 0.25rem; text-transform: uppercase; letter-spacing: 0.05em; }
         .arch-icon { font-size: 1.75rem; color: #2563eb; margin-bottom: 0.5rem; }
-        
-        .process-step { position: relative; padding-left: 2rem; border-left: 2px solid #e2e8f0; padding-bottom: 1.5rem; }
-        .process-step:last-child { border-left: none; padding-bottom: 0; }
-        .process-step::before { content: ''; position: absolute; left: -0.55rem; top: 0.25rem; width: 1.1rem; height: 1.1rem; background: #fff; border: 3px solid #2563eb; border-radius: 50%; }
-        .process-step h5 { font-size: 1rem; font-weight: 700; color: #1e293b; margin-bottom: 0.25rem; }
-        .process-step p { font-size: 0.9rem; color: #64748b; }
     </style>
 </head>
 <body class="selection:bg-blue-100 selection:text-blue-900">
@@ -55,7 +45,6 @@
             </div>
             <div class="hidden md:flex gap-8 text-base font-semibold text-slate-600">
                 <a href="#hero" class="hover:text-blue-600 transition-colors">Intro</a>
-                <a href="#impact" class="hover:text-blue-600 transition-colors">Impact</a>
                 <a href="#projects" class="hover:text-blue-600 transition-colors">Projects</a>
             </div>
             <a href="mailto:skwnsgur5919@naver.com" class="text-sm font-bold bg-slate-900 hover:bg-slate-800 text-white px-5 py-2.5 rounded-lg transition-colors shadow-md">
@@ -64,7 +53,7 @@
         </div>
     </nav>
 
-    <section id="hero" class="pt-48 pb-20 px-6 flex items-center">
+    <section id="hero" class="pt-48 pb-20 px-6 flex items-center min-h-[90vh]">
         <div class="max-w-7xl mx-auto grid lg:grid-cols-12 gap-16 items-center">
             <div class="lg:col-span-7 space-y-8">
                 <div class="inline-block px-4 py-1.5 rounded-full bg-blue-50 border border-blue-100 text-blue-600 text-sm font-bold tracking-wide">
@@ -89,9 +78,6 @@
                     <button onclick="document.querySelector('#projects').scrollIntoView({behavior:'smooth'})" class="bg-blue-600 text-white px-8 py-3.5 rounded-xl text-base font-bold hover:bg-blue-700 transition-colors shadow-lg shadow-blue-200">
                         프로젝트 이력 보기
                     </button>
-                    <a href="https://github.com/junhyeok94-la" target="_blank" class="border border-slate-200 bg-white px-8 py-3.5 rounded-xl text-base font-bold hover:bg-slate-50 transition-colors text-slate-700 flex items-center gap-2 shadow-sm">
-                        <i class="fab fa-github text-xl"></i> GitHub
-                    </a>
                 </div>
             </div>
             
@@ -137,54 +123,6 @@
         </div>
     </section>
 
-    <section id="impact" class="py-24 bg-white border-t border-slate-100">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="section-intro">
-                <h2 class="text-3xl font-extrabold text-slate-900 mb-4">Key Metrics</h2>
-                <p>단순한 파이프라인 구축을 넘어, 비즈니스에 실질적으로 기여한 정량적 성과입니다.<br>각 카드를 클릭하면 상세 프로젝트로 이동합니다.</p>
-            </div>
-            
-            <div class="grid md:grid-cols-2 gap-12 items-start">
-                <div class="chart-container bg-slate-50 rounded-2xl p-6 border border-slate-100 shadow-sm h-[450px] flex flex-col justify-center">
-                    <h3 class="text-base font-bold text-slate-700 mb-4 text-center">GS Retail Batch Optimization</h3>
-                    <div class="relative h-full w-full">
-                        <canvas id="batchChart"></canvas>
-                    </div>
-                    <p class="text-center text-sm font-medium text-slate-600 mt-4 bg-white p-3 rounded-lg border border-slate-200">
-                        <i class="fas fa-lightbulb text-yellow-500 mr-2"></i>배치 종료 시간을 <b>5.5시간</b> 앞당겨 현업의 의사결정 속도를 높였습니다.
-                    </p>
-                </div>
-
-                <div class="grid grid-cols-2 gap-5">
-                    <div onclick="document.getElementById('project-gsretail').scrollIntoView({behavior:'smooth'})" class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover-scale relative overflow-hidden group">
-                        <div class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded inline-block mb-3">Private Sector</div>
-                        <h4 class="text-base font-bold text-slate-900 mb-1">GS Retail HBU</h4>
-                        <p class="text-xs text-slate-500 mb-4 font-medium">인프라 과금 방어 및 최적화</p>
-                        <p class="text-3xl font-black text-blue-600">Cost <span class="text-sm font-bold text-slate-400">절감</span></p>
-                    </div>
-                    <div onclick="document.getElementById('project-gsretail').scrollIntoView({behavior:'smooth'})" class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover-scale relative overflow-hidden group">
-                        <div class="text-[10px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded inline-block mb-3">Private Sector</div>
-                        <h4 class="text-base font-bold text-slate-900 mb-1">GS Retail HBU</h4>
-                        <p class="text-xs text-slate-500 mb-4 font-medium">Hourly 소급 가능 시간</p>
-                        <p class="text-3xl font-black text-green-500">24H <span class="text-sm font-bold text-slate-400">확장</span></p>
-                    </div>
-                    <div onclick="document.getElementById('project-kics').scrollIntoView({behavior:'smooth'})" class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover-scale relative overflow-hidden group">
-                        <div class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded inline-block mb-3">Public Sector</div>
-                        <h4 class="text-base font-bold text-slate-900 mb-1">KICS (Legal)</h4>
-                        <p class="text-xs text-slate-500 mb-4 font-medium">데이터 적재 정합성</p>
-                        <p class="text-3xl font-black text-slate-800">High</p>
-                    </div>
-                    <div onclick="document.getElementById('project-finance').scrollIntoView({behavior:'smooth'})" class="p-6 rounded-2xl bg-white border border-slate-200 shadow-sm hover-scale relative overflow-hidden group">
-                        <div class="text-[10px] font-bold text-slate-600 bg-slate-100 px-2 py-1 rounded inline-block mb-3">Public Sector</div>
-                        <h4 class="text-base font-bold text-slate-900 mb-1">Local Finance</h4>
-                        <p class="text-xs text-slate-500 mb-4 font-medium">초과 달성(One-Table)</p>
-                        <p class="text-3xl font-black text-slate-800">200+ <span class="text-sm font-bold text-slate-400">화면</span></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <section id="projects" class="py-24 px-6 bg-slate-50 border-t border-slate-200">
         <div class="max-w-7xl mx-auto">
             <div class="section-intro">
@@ -194,7 +132,7 @@
 
             <div class="space-y-12">
                 
-                <div id="project-gsretail" class="bg-white rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
                     <div class="grid md:grid-cols-12 gap-0">
                         <div class="md:col-span-4 bg-slate-900 text-white p-10 flex flex-col justify-between relative overflow-hidden">
                             <div class="relative z-10">
@@ -256,7 +194,7 @@
                     </div>
                 </div>
 
-                <div id="project-finance" class="bg-white rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
                     <div class="grid md:grid-cols-12 gap-0">
                         <div class="md:col-span-4 bg-slate-50 border-r border-slate-200 p-10 flex flex-col justify-between">
                             <div>
@@ -285,7 +223,7 @@
                                 <div>
                                     <h4 class="font-bold text-slate-900 text-base mb-2">2. 고난이도 행정 비즈니스 로직 전산화 (유형분류 및 위기관리)</h4>
                                     <p class="text-sm text-slate-600 leading-relaxed bg-slate-50 p-4 rounded-lg border border-slate-100">
-                                        매년 외부 용역에 의존하던 <strong>'자치단체 유형분류'</strong>(인구 50%, 재정 50% 가중치 평가) 및 '재정위기관리' 작업을 시스템화했습니다. 행안부 공무원과 직접 요구사항을 조율하고, 외부 Open API 데이터를 융합해 복잡한 지표 산출 로직을 직접 파이프라인에 구현하여 30여 본의 심화 화면을 오픈했습니다.
+                                        매년 외부 용역에 의존하던 <strong>'자치단체 유형분류'</strong> 및 '재정위기관리' 작업을 시스템화했습니다. 행안부 공무원과 직접 요구사항을 조율하고, 외부 Open API 데이터를 융합해 복잡한 지표 산출 로직을 직접 파이프라인에 구현하여 30여 본의 심화 화면을 오픈했습니다.
                                     </p>
                                 </div>
                                 <div>
@@ -299,7 +237,7 @@
                     </div>
                 </div>
 
-                <div id="project-kics" class="bg-white rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
+                <div class="bg-white rounded-[2rem] overflow-hidden border border-slate-200 shadow-sm hover:shadow-lg transition-shadow duration-300">
                     <div class="grid md:grid-cols-12 gap-0">
                         <div class="md:col-span-4 bg-slate-50 border-r border-slate-200 p-10 flex flex-col justify-between">
                             <div>
@@ -423,69 +361,10 @@
                 <a href="mailto:skwnsgur5919@naver.com" class="text-slate-400 hover:text-blue-600 transition-colors">
                     <i class="fas fa-envelope text-2xl"></i>
                 </a>
-                <a href="https://github.com/junhyeok94-la" target="_blank" class="text-slate-400 hover:text-slate-900 transition-colors">
-                    <i class="fab fa-github text-2xl"></i>
-                </a>
             </div>
             <p class="text-[10px] text-slate-400 uppercase tracking-widest font-bold">&copy; 2026 NA JUNHYEOK. Data Engineer.</p>
         </div>
     </footer>
 
-    <script>
-        // Charts - Batch Optimization
-        Chart.defaults.font.size = 13; 
-        Chart.defaults.font.family = "'Pretendard', sans-serif";
-
-        const ctxBatch = document.getElementById('batchChart').getContext('2d');
-        new Chart(ctxBatch, {
-            type: 'bar',
-            indexAxis: 'y', 
-            data: {
-                labels: ['최적화 이후 (Event-Driven)', '기존 환경 (Time-Based)'],
-                datasets: [{
-                    label: 'Batch Duration (Hours)',
-                    data: [5.5, 11], 
-                    backgroundColor: [
-                        'rgba(37, 99, 235, 0.9)',    
-                        'rgba(203, 213, 225, 0.5)'  
-                    ],
-                    borderRadius: 4,
-                    barPercentage: 0.5
-                }]
-            },
-            options: {
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: { display: false },
-                    tooltip: { enabled: false },
-                    datalabels: {
-                        color: (context) => context.dataIndex === 0 ? 'white' : '#475569',
-                        anchor: 'end',
-                        align: (context) => context.dataIndex === 0 ? 'start' : 'end',
-                        offset: 6,
-                        font: { weight: 'bold', size: 12 },
-                        formatter: (value, context) => {
-                            if (context.dataIndex === 1) return '기존 11시간 소요';
-                            return '5.5시간 만에 종료 (50% 단축)';
-                        }
-                    }
-                },
-                scales: {
-                    x: {
-                        beginAtZero: true,
-                        max: 12,
-                        title: { display: true, text: '소요 시간 (Hours)', font: {weight: 'bold'} },
-                        grid: { borderDash: [4, 4], color: '#e2e8f0' }
-                    },
-                    y: { 
-                        grid: { display: false },
-                        ticks: { font: {weight: 'bold'} }
-                    }
-                }
-            },
-            plugins: [ChartDataLabels]
-        });
-    </script>
 </body>
 </html>
